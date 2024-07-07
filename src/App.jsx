@@ -15,8 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      {open ? (
-        <div className="overlay">
+        <div className={`overlay animated ${open ? 'show' : ''}`}>
         <div className="modal">
           <svg onClick={onClickClose} height="200" viewBox="0 0 200 200" width="200">
             <title />
@@ -25,9 +24,7 @@ function App() {
           <img src="https://media2.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" />
         </div>
       </div>
-      ) : (
         <button onClick={onClickOpen} className="open-modal-btn" >✨ Открыть окно</button>
-        )}
     </div>
   );
 }
