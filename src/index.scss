@@ -1,159 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap');
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ffea00;
+  background-color: #f2f2f2;
 }
 
 * {
   box-sizing: border-box;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Inter', sans-serif;
+  outline: none;
 }
 
 .App {
-  padding: 100px;
-  width: 100%;
-  max-width: 900px;
-  margin: 100px auto;
-  background-color: #fff;
-  border-radius: 30px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 70px;
-  padding-right: 60px;
-
-  h3 {
-    text-align: center;
-    font-size: 24px;
-  }
-
-  b {
-    display: block;
-    font-size: 62px;
-    font-weight: 900;
-  }
+.text-skeleton {
+  margin-top: 30px;
 }
 
-.game {
-  display: flex;
-  justify-content: space-between;
-  margin: 50px 0;
+.list {
+  list-style: none;
+  padding: 20px 10px;
+  margin: 0;
+  width: 300px;
 
-  &__user {
+  li {
     display: flex;
     align-items: center;
-  }
-
-  &__arrow {
-    width: 80px;
-    margin-left: 30px;
-    transition: all 0.1s ease-in-out;
+    padding: 10px 15px;
+    border-radius: 5px;
     cursor: pointer;
-    opacity: 0.3;
+    font-weight: 500;
+    margin-bottom: 4px;
+
+    .triangle {
+      width: 0.6875em;
+      height: 0.6875em;
+      display: block;
+      fill: rgba(55, 53, 47, 0.7);
+      flex-shrink: 0;
+      margin-right: 8px;
+      backface-visibility: hidden;
+      transition: transform 200ms ease-out 0s;
+      transform: rotateZ(90deg);
+      opacity: 1;
+    }
+
+    .page {
+      width: 18px;
+      height: 18px;
+      display: block;
+      fill: rgba(55, 53, 47, 0.7);
+      flex-shrink: 0;
+      backface-visibility: hidden;
+    }
+
+    &.active {
+      background-color: #e8e7e4;
+    }
 
     &:hover {
-      transform: translateX(10px);
-      opacity: 1;
+      background-color: #e8e7e4;
+    }
+
+    svg {
+      margin-right: 5px;
+    }
+
+    &.active {
+      font-weight: 600;
     }
   }
 }
 
-.variant {
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
-  animation: showVariant 0.5s ease-in-out;
+.list-skeleton {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
 
-  &:hover {
-    transform: scale(1.1);
+  svg {
+    margin-bottom: 5px;
   }
 }
 
-.refresh {
-  cursor: pointer;
-}
+.content {
+  background-color: #fff;
+  padding: 80px 100px;
+  width: 100%;
+  height: 100vh;
 
-.waiting {
-  width: 140px;
-  animation: waiting 1s ease-in-out infinite;
-  path {
-    fill: rgba(0, 0, 0, 0.3);
-  }
-}
-
-.thinking {
-  width: 140px;
-  animation: thinking 1s ease-in-out infinite;
-}
-
-.userSelect {
-  animation: rightAnimate 0.5s ease-in-out;
-  animation-fill-mode: forwards;
-  pointer-events: none;
-}
-
-.botSelect {
-  animation: leftAnimate 0.5s ease-in-out;
-  animation-fill-mode: forwards;
-  pointer-events: none;
-}
-
-@keyframes waiting {
-  0% {
-    transform: scale(0.9);
-  }
-  50% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.9);
-  }
-}
-
-@keyframes thinking {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(90deg);
-  }
-  100% {
-    transform: rotate(180deg);
-  }
-}
-
-@keyframes showVariant {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes rightAnimate {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(120px);
-  }
-}
-
-@keyframes leftAnimate {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-120px);
+  .title-input {
+    font-size: 48px;
+    border: 0;
+    padding: 0;
+    font-weight: 700;
   }
 }
