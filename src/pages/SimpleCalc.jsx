@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Container, Grid, Button, Box, Typography } from '@mui/material';
+import { Container, Grid, Button, Box, Typography, Card, CardContent, TextField } from '@mui/material';
 import { create, all } from 'mathjs';
 
 const math = create(all);
 
 function SimpleCalc() {
    const [input, setInput] = useState('');
+
+   const extraButtons = ['(', ')', 'clear', '<-', 'I', 'ang', 'x^', 'sqrt', '+/-', '/', '*', '-']
+   const numberButtons = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.'];
 
    const addToInput = val => {
       setInput(input + val);
@@ -23,93 +26,63 @@ function SimpleCalc() {
       }
    };
 
+
    return (
-      <Container maxWidth='xs'>
-         <Box display='flex' justifyContent='center' alignItems='center' minHeight='90vh'>
-            <Grid container spacing={1.5}>
-               <Grid item xs={12}>
-                  <Grid item xs={3}>
-                     <Button fullWidth variant='outlined'>form</Button>
-                  </Grid>
-                  <Box sx={{ width: '100%', border: '1px solid black', textAlign: 'right', p: 2 }}>
-                     <Typography>{input || '0'}</Typography>
-                  </Box>
-               </Grid>
-
-               <Grid item xs={3}>
-                  <Button fullWidth variant='outlined' onClick={() => addToInput('(')}>(</Button>
-               </Grid>
-
-               <Grid item xs={3}>
-                  <Button fullWidth variant='outlined' onClick={() => addToInput(')')}>)</Button>
-               </Grid>
-
-               <Grid item xs={3}>
-                  <Button fullWidth variant='outlined' onClick={() => clearInput()}>Clear</Button>
-               </Grid>
-
-               <Grid item xs={3}>
-               </Grid>
-
-               <Grid item xs={3}>
-               </Grid>
-
-               {['i', 'ang'].map((val) => (
-                  <Grid item xs={3} key={val}>
-                     <Button fullWidth variant='outlined' onClick={() => addToInput(val)}>{val}</Button>
-                  </Grid>
-               ))}
-
-               <Grid item xs={3}>
-               </Grid>
-
-               {['+/-', '/', '*', '-'].map((val) => (
-                  <Grid item xs={3} key={val}>
-                     <Button fullWidth variant='outlined' onClick={() => addToInput(val)}>{val}</Button>
-                  </Grid>
-               ))}
-
-               {['7', '8', '9'].map((val) => (
-                  <Grid item xs={3} key={val}>
-                     <Button fullWidth variant='contained' onClick={() => addToInput(val)}>{val}</Button>
-                  </Grid>
-               ))}
-
-               <Grid item xs={3}>
-                  <Button fullWidth variant='outlined' onClick={() => addToInput('+')}>+</Button>
-               </Grid>
-
-               {['4', '5', '6'].map((val) => (
-                  <Grid item xs={3} key={val}>
-                     <Button fullWidth variant='contained' onClick={() => addToInput(val)}>{val}</Button>
-                  </Grid>
-               ))}
-
-               <Grid item xs={3}>
-               </Grid>
-
-               <Grid item xs={9} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
-                     {['1', '2', '3'].map((val) => (
-                        <Button key={val} variant='contained' onClick={() => addToInput(val)} sx={{ width: '4.67vw' }}>
-                           {val}
-                        </Button>
+      <Container sx={{ height: {xs: '86vh', md: '88vh', lg: '92vh', xl: '93vh'}, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+         <Card sx={{ width: {xs: '100%', md: '60%', lg: '60%', xl: '60%'}, minWidth: '300px', height: {xs: '90%', md: '90%', lg: '90%', xl: '90%'}, padding: 0.5, display: 'flex', flexDirection: 'column' }}>
+            <CardContent sx={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
+               <Box sx={{ flex: '1 0 auto', padding: 1 }}>
+                  <Typography variant="h5" component="div" sx={{ textAlign: 'center', marginBottom: 1 }}>
+                     Calculator
+                  </Typography>
+                  <TextField
+                     fullWidth
+                     variant="outlined"
+                     sx={{ marginTop: 1 }}
+                     inputProps={{ readOnly: true }}
+                  />
+               </Box>
+               <Box sx={{ flex: '2 0 auto', display: 'flex', padding: 0.5 }}>
+                  <Grid container spacing='10'>
+                     {extraButtons.map((val) => (
+                        <Grid item xs={3}>
+                           <Button key={val} fullWidth variant='outlined' style={{ height: '100%' }}>
+                              {val}
+                           </Button>
+                        </Grid>
                      ))}
+                  </Grid>
+               </Box>
+               <Box sx={{ flex: '4 0 auto', display: 'flex', padding: 0.5 }}>
+                  <Box sx={{ width: '74.5%', display: 'flex' }}>
+                     <Grid container spacing='10'>
+                        {numberButtons.map((val) => (
+                           <Grid item xs={(val === '0') ? 8 : 4}>
+                              <Button key={val} fullWidth variant="contained" style={{ height: '100%' }}>
+                                 {val}
+                              </Button>
+                           </Grid>
+                        ))}
+                     </Grid>
                   </Box>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                     <Button variant='contained' onClick={() => addToInput('0')} sx={{ width: '192px', marginRight: '10px' }}>0</Button>
-                     <Button variant='contained' onClick={() => addToInput('.')} sx={{ width: '90px' }}>.</Button>
+                  <Box sx={{ width: '25.5%', display: 'flex' }}>
+                     <Grid container spacing='10'>
+                        {['+', '='].map((val) => (
+                           <Grid item xs={12} marginLeft='10px'>
+                              <Button key={val} fullWidth variant="outlined" style={{ height: '100%' }}>
+                                 {val}
+                              </Button>
+                           </Grid>
+                        ))}
+                     </Grid>
                   </Box>
-               </Grid>
-
-               <Grid item xs={3}>
-                  <Button fullWidth variant='outlined' onClick={() => calculateResult()} style={{ height: '100%' }}>=</Button>
-               </Grid>
-
-            </Grid>
-         </Box>
+               </Box>
+            </CardContent>
+         </Card>
       </Container>
    );
 }
 
 export default SimpleCalc;
+
+
