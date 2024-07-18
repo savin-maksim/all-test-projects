@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Container, Grid, Button, Box, Typography, Card, CardContent, TextField, Slider, Snackbar } from '@mui/material';
-import { create, all, evaluate } from 'mathjs';
+import { create, all } from 'mathjs';
+
+import './index.css';
 
 // configure the default type of numbers as BigNumbers
 const initialConfig = {
@@ -9,7 +11,7 @@ const initialConfig = {
    number: 'BigNumber',
 
    // Number of significant digits for BigNumbers
-   precision: 19
+   precision: 20
 };
 
 const math = create(all, initialConfig);
@@ -27,6 +29,7 @@ function ComplexCalc() {
    const copyToClipboard = useCallback((text) => {
       navigator.clipboard.writeText(text)
          .then(() => {
+            setInput(text);
             setSnackbarMessage(`Copied: ${text}`);
             setSnackbarOpen(true);
          })
@@ -36,12 +39,12 @@ function ComplexCalc() {
          });
    }, []);
 
+
    const clearHistory = () => {
       setHistory([]);
       setHistoryRes([]);
       setLastExpression('')
    };
-
 
    const inputRef = useRef(null);
 
@@ -88,6 +91,7 @@ function ComplexCalc() {
          });
 
          const evaluatedResult = math.evaluate(result);
+         console.log(math.pow(math.complex(-3, 7), 2))
          const handleHistory = [...history, input];
          const handleHistoryRes = [...historyRes, String(evaluatedResult)];
 
@@ -95,7 +99,6 @@ function ComplexCalc() {
          setHistory(handleHistory);
          setHistoryRes(handleHistoryRes)
 
-         console.log(`${handleHistory[handleHistory.length - 1]} = ${handleHistoryRes[handleHistoryRes.length - 1]}`);
 
          if (math.isComplex(evaluatedResult)) {
             setInput(`(${evaluatedResult})`);
@@ -109,13 +112,22 @@ function ComplexCalc() {
    };
 
    const convertToPolar = (input) => {
-      const absValue = math.abs(evaluate(input)); // Вычисляем модуль
-      const angleValue = math.arg(evaluate(input)); // Вычисляем аргумент в радианах
-      const polarResult = String(`${absValue} angl ${evaluate(`${angleValue}*180/pi`)}`);
-      setInput(`(${polarResult})`);
+      try {
+         const result = input.replace(/\(?\s*(-?\d+(\.\d+)?)\s*[\+\-]\s*(-?\d+(\.\d+)?)i\s*\)?/gi, (_, real, _1, imaginary) => {
+            const absValue = math.evaluate(`sqrt(${real}^2+${imaginary}^2)`);
+            const angleValue = math.evaluate(`atan2(${imaginary}, ${real})*180/pi`);
+            return `(${absValue} angl ${angleValue})`;
+         });
+
+         setInput(`${result}`);
+      } catch (error) {
+         console.log(error);
+         setInput('Error');
+      }
    };
 
-   const convertToAlgebraic = (input) => {
+
+   const convertToAlgebraic = () => {
       const result = input.replace(/(-?\d+(\.\d+)?) angl (-?\d+(\.\d+)?)/g, (_, r, _1, phi) => {
          const a = math.evaluate(`${r}*cos(${phi}*pi/180)`);
          const b = math.evaluate(`${r}*sin(${phi}*pi/180)`);
@@ -134,8 +146,8 @@ function ComplexCalc() {
 
 
    return (
-      <Container sx={{ height: { xs: '100vh', md: '100vh', lg: '100vh', xl: '100vh' }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-         <Card sx={{ width: { xs: '100%', md: '100%', lg: '100%', xl: '100%' }, minWidth: '330px', maxWidth: '550px', height: { xs: '90%', md: '100%', lg: '80%', xl: '80%' }, minHeight: 'auto', padding: 0.5, display: 'flex', flexDirection: 'column' }}>
+      <Container sx={{ height: { xs: '97vh', md: '95vh', lg: '95vh', xl: '95vh' }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+         <Card sx={{ width: { xs: '100%', md: '100%', lg: '100%', xl: '100%' }, minWidth: '330px', maxWidth: '500px', height: { xs: '90%', md: '100%', lg: '80%', xl: '80%' }, minHeight: 'auto', padding: 0.5, display: 'flex', flexDirection: 'column' }}>
             <CardContent sx={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
                {showHistory ? (
                   <Box sx={{ flex: '1 1 auto', overflowY: 'auto', position: 'relative' }}>
@@ -176,7 +188,7 @@ function ComplexCalc() {
                      </Box>
                   </Box>
                ) : (<>
-                  <Box sx={{ flex: '0 0 auto', padding: 1 }}>
+                  <Box sx={{ flex: '0 0 auto', padding: 0 }}>
                      <Button fullWidth onClick={() => setShowHistory(!showHistory)}>
                         history
                      </Button>
@@ -208,7 +220,7 @@ function ComplexCalc() {
                            <Slider
                               value={precision}
                               min={1}
-                              max={19}
+                              max={20}
                               step={1}
                               onChange={(e, newValue) => setPrecision(newValue)}
                               valueLabelDisplay="auto"
@@ -256,7 +268,7 @@ function ComplexCalc() {
                         <Grid container spacing='10'>
                            {numberButtons.map((val) => (
                               <Grid item xs={(val === '0') ? 8 : 4} key={val}>
-                                 <Button fullWidth variant="contained" style={{ height: '100%' }} onClick={() => addToInput(val)}>
+                                 <Button fullWidth color='primary' variant="contained" style={{ height: '100%' }} onClick={() => addToInput(val)}>
                                     {val}
                                  </Button>
                               </Grid>
