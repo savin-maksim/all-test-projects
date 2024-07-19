@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Container, Grid, Button, Box, Typography, Card, CardContent, TextField, Slider, Snackbar } from '@mui/material';
 import { create, all } from 'mathjs';
 
-import './index.css';
+import './index.css'
 
 // configure the default type of numbers as BigNumbers
 const initialConfig = {
@@ -59,7 +59,7 @@ function ComplexCalc() {
       math.config(newConfig);
    }, [precision]);
 
-   const extraButtons = ['(', ')', 'ac', '<-', 'i', ' angl ', 'x^', 'sqrt', '%', '/', '*', '-'];
+   const extraButtons = ['(', ')', 'ac', '<-', 'i', ' ∠ ', 'x^', '√', '%', '/', '*', '-'];
    const numberButtons = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.'];
 
    const addToInput = val => {
@@ -84,14 +84,13 @@ function ComplexCalc() {
 
    const calculateResult = () => {
       try {
-         const result = input.replace(/(-?\d+(\.\d+)?) angl (-?\d+(\.\d+)?)/g, (_, r, _1, phi) => {
+         const result = input.replace(/(-?\d+(\.\d+)?) ∠ (-?\d+(\.\d+)?)/g, (_, r, _1, phi) => {
             const a = math.evaluate(`${r}*cos(${phi}*pi/180)`);
             const b = math.evaluate(`${r}*sin(${phi}*pi/180)`);
             return `${a} + ${b}i`;
          });
 
          const evaluatedResult = math.evaluate(result);
-         console.log(math.pow(math.complex(-3, 7), 2))
          const handleHistory = [...history, input];
          const handleHistoryRes = [...historyRes, String(evaluatedResult)];
 
@@ -116,7 +115,7 @@ function ComplexCalc() {
          const result = input.replace(/\(?\s*(-?\d+(\.\d+)?)\s*[\+\-]\s*(-?\d+(\.\d+)?)i\s*\)?/gi, (_, real, _1, imaginary) => {
             const absValue = math.evaluate(`sqrt(${real}^2+${imaginary}^2)`);
             const angleValue = math.evaluate(`atan2(${imaginary}, ${real})*180/pi`);
-            return `(${absValue} angl ${angleValue})`;
+            return `(${absValue} ∠ ${angleValue})`;
          });
 
          setInput(`${result}`);
@@ -128,7 +127,7 @@ function ComplexCalc() {
 
 
    const convertToAlgebraic = () => {
-      const result = input.replace(/(-?\d+(\.\d+)?) angl (-?\d+(\.\d+)?)/g, (_, r, _1, phi) => {
+      const result = input.replace(/(-?\d+(\.\d+)?) ∠ (-?\d+(\.\d+)?)/g, (_, r, _1, phi) => {
          const a = math.evaluate(`${r}*cos(${phi}*pi/180)`);
          const b = math.evaluate(`${r}*sin(${phi}*pi/180)`);
          return `${a} + ${b}i`;
@@ -189,7 +188,7 @@ function ComplexCalc() {
                   </Box>
                ) : (<>
                   <Box sx={{ flex: '0 0 auto', padding: 0 }}>
-                     <Button fullWidth onClick={() => setShowHistory(!showHistory)}>
+                     <Button fullWidth variant='text' onClick={() => setShowHistory(!showHistory)}>
                         history
                      </Button>
                      <TextField
@@ -254,7 +253,7 @@ function ComplexCalc() {
                                        ? handleBackspace
                                        : val === 'x^'
                                           ? () => addToInput('^')
-                                          : val === 'sqrt'
+                                          : val === '√'
                                              ? () => addToInput('sqrt(')
                                              : () => addToInput(val)}>
                                  {val}
