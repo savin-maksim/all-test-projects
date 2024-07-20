@@ -21,7 +21,7 @@ function ComplexCalc() {
    const [lastExpression, setLastExpression] = useState('');
    const [history, setHistory] = useState([]);
    const [historyRes, setHistoryRes] = useState([]);
-   const [precision, setPrecision] = useState(initialConfig.precision);
+   const [precision, setPrecision] = useState(3);
    const [showHistory, setShowHistory] = useState(false);
    const [snackbarOpen, setSnackbarOpen] = useState(false);
    const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -37,6 +37,7 @@ function ComplexCalc() {
             setSnackbarMessage('Failed to copy');
             setSnackbarOpen(true);
          });
+      setShowHistory(false);
    }, []);
 
 
@@ -53,11 +54,6 @@ function ComplexCalc() {
          inputRef.current.scrollLeft = inputRef.current.scrollWidth; // прокручиваем в самый конец
       }
    }, [input]);
-
-   useEffect(() => {
-      const newConfig = { ...initialConfig, precision };
-      math.config(newConfig);
-   }, [precision]);
 
    const extraButtons = ['(', ')', 'ac', '<-', 'i', ' ∠ ', 'x^', '√', '%', '/', '*', '-'];
    const numberButtons = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.'];
@@ -90,13 +86,13 @@ function ComplexCalc() {
             return `${a} + ${b}i`;
          });
 
-         const evaluatedResult = math.evaluate(result);
+         const evaluatedResult = math.round(math.evaluate(result), precision);
          const handleHistory = [...history, input];
          const handleHistoryRes = [...historyRes, String(evaluatedResult)];
 
          setLastExpression(`${handleHistory[handleHistory.length - 1]} = ${handleHistoryRes[handleHistoryRes.length - 1]}`);
          setHistory(handleHistory);
-         setHistoryRes(handleHistoryRes)
+         setHistoryRes(handleHistoryRes);
 
 
          if (math.isComplex(evaluatedResult)) {
@@ -115,7 +111,7 @@ function ComplexCalc() {
          const result = input.replace(/\(?\s*(-?\d+(\.\d+)?)\s*[\+\-]\s*(-?\d+(\.\d+)?)i\s*\)?/gi, (_, real, _1, imaginary) => {
             const absValue = math.evaluate(`sqrt(${real}^2+${imaginary}^2)`);
             const angleValue = math.evaluate(`atan2(${imaginary}, ${real})*180/pi`);
-            return `(${absValue} ∠ ${angleValue})`;
+            return `(${math.round(absValue, precision)} ∠ ${math.round(angleValue, precision)})`;
          });
 
          setInput(`${result}`);
@@ -130,7 +126,7 @@ function ComplexCalc() {
       const result = input.replace(/(-?\d+(\.\d+)?) ∠ (-?\d+(\.\d+)?)/g, (_, r, _1, phi) => {
          const a = math.evaluate(`${r}*cos(${phi}*pi/180)`);
          const b = math.evaluate(`${r}*sin(${phi}*pi/180)`);
-         return `${a} + ${b}i`;
+         return `${math.round(a, precision)} + ${math.round(b, precision)}i`;
       });
       const evaluatedResult = math.evaluate(result);
 
@@ -141,13 +137,19 @@ function ComplexCalc() {
       }
    };
 
+   const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      calculateResult();
+    }
+  };
+
 
 
 
    return (
       <Container sx={{ height: { xs: '97vh', md: '95vh', lg: '95vh', xl: '95vh' }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-         <Card sx={{ width: { xs: '100%', md: '100%', lg: '100%', xl: '100%' }, minWidth: '330px', maxWidth: '500px', height: { xs: '90%', md: '100%', lg: '80%', xl: '80%' }, minHeight: 'auto', padding: 0.5, display: 'flex', flexDirection: 'column' }}>
-            <CardContent sx={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
+         <Card sx={{ width: { xs: '100%', md: '100%', lg: '100%', xl: '100%' }, minWidth: '330px', maxWidth: '500px', height: { xs: '95%', md: '100%', lg: '80%', xl: '80%' }, minHeight: 'auto', padding: 0.5, display: 'flex', flexDirection: 'column' }}>
+            <CardContent sx={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', marginTop: '12px' }}>
                {showHistory ? (
                   <Box sx={{ flex: '1 1 auto', overflowY: 'auto', position: 'relative' }}>
                      <Button
@@ -187,7 +189,7 @@ function ComplexCalc() {
                      </Box>
                   </Box>
                ) : (<>
-                  <Box sx={{ flex: '0 0 auto', padding: 0 }}>
+                  <Box sx={{ flex: '0 0 auto' }}>
                      <Button fullWidth variant='text' onClick={() => setShowHistory(!showHistory)}>
                         history
                      </Button>
@@ -202,9 +204,10 @@ function ComplexCalc() {
                         fullWidth
                         variant="outlined"
                         inputRef={inputRef}
-                        sx={{ marginBottom: 0, overflowX: 'auto' }}
+                        sx={{ overflowX: 'auto' }}
                         inputProps={{ style: { textAlign: 'right' } }}
                         onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={handleKeyDown}
                         value={input}
                      />
                   </Box>
@@ -274,7 +277,7 @@ function ComplexCalc() {
                            ))}
                         </Grid>
                      </Box>
-                     <Box sx={{ width: '25.5%', display: 'flex' }}>
+                     <Box sx={{ width: '25.5%', display: 'flex' }} >
                         <Grid container spacing='10'>
                            {['+', '='].map((val) => (
                               <Grid item xs={12} key={val} marginLeft='10px'>
