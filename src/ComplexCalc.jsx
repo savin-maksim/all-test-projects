@@ -25,6 +25,7 @@ function ComplexCalc() {
    const [showHistory, setShowHistory] = useState(false);
    const [snackbarOpen, setSnackbarOpen] = useState(false);
    const [snackbarMessage, setSnackbarMessage] = useState('');
+   const inputRef = useRef(null);
 
    const copyToClipboard = useCallback((text) => {
       navigator.clipboard.writeText(text)
@@ -47,7 +48,6 @@ function ComplexCalc() {
       setLastExpression('')
    };
 
-   const inputRef = useRef(null);
 
    useEffect(() => {
       if (inputRef.current) {
@@ -55,7 +55,7 @@ function ComplexCalc() {
       }
    }, [input]);
 
-   const extraButtons = ['(', ')', 'ac', '<-', 'i', ' ∠ ', 'x^', '√', '%', '/', '*', '-'];
+   const extraButtons = ['(', ')', 'ac', '<-', 'i', ' ∠ ', 'x^', '√', '%', ' / ', ' * ', ' - '];
    const numberButtons = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.'];
 
    const addToInputNumber = val => {
@@ -69,8 +69,8 @@ function ComplexCalc() {
    const addToInputExtra = val => {
       if (input === 'Error') {
          setInput(val);
-      } else if (['/', '*', '-', '+'].includes(input[input.length - 1])) {
-         setInput(input.slice(0, -1) + val);
+      } else if (['/', '*', '-', '+'].includes(input[input.length - 2])) {
+         setInput(input.slice(0, -3) + val);
       } else {
          setInput(input + val);
       }
@@ -83,7 +83,10 @@ function ComplexCalc() {
    const handleBackspace = () => {
       if (input === 'Error') {
          setInput('');
-      } else {
+      } else if (['/', '*', '-', '+'].includes(input[input.length - 2])) {
+         setInput(input.slice(0, -3));
+      }
+      else {
          setInput(input.slice(0, -1));
       }
    };
@@ -265,7 +268,7 @@ function ComplexCalc() {
                                     : val === '<-'
                                        ? handleBackspace
                                        : val === 'x^'
-                                          ? () => addToInput('^')
+                                          ? () => addToInput('^ ')
                                           : val === '√'
                                              ? () => addToInput('sqrt(')
                                              : () => addToInputExtra(val)}>
@@ -289,10 +292,10 @@ function ComplexCalc() {
                      </Box>
                      <Box sx={{ width: '25.5%', display: 'flex' }} >
                         <Grid container spacing='10'>
-                           {['+', '='].map((val) => (
+                           {[' + ', '='].map((val) => (
                               <Grid item xs={12} key={val} marginLeft='10px'>
                                  <Button fullWidth variant="outlined" style={{ height: '100%' }} onClick={
-                                    val === '+'
+                                    val === ' + '
                                        ? () => addToInputExtra(val)
                                        : calculateResult
                                  }>
