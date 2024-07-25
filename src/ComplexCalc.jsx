@@ -58,9 +58,19 @@ function ComplexCalc() {
    const extraButtons = ['(', ')', 'ac', '<-', 'i', ' ∠ ', 'x^', '√', '%', '/', '*', '-'];
    const numberButtons = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.'];
 
-   const addToInput = val => {
+   const addToInputNumber = val => {
       if (input === 'Error') {
          setInput(val);
+      } else {
+         setInput(input + val);
+      }
+   };
+
+   const addToInputExtra = val => {
+      if (input === 'Error') {
+         setInput(val);
+      } else if (['/', '*', '-', '+'].includes(input[input.length - 1])) {
+         setInput(input.slice(0, -1) + val);
       } else {
          setInput(input + val);
       }
@@ -138,10 +148,10 @@ function ComplexCalc() {
    };
 
    const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      calculateResult();
-    }
-  };
+      if (e.key === 'Enter') {
+         calculateResult();
+      }
+   };
 
 
 
@@ -258,7 +268,7 @@ function ComplexCalc() {
                                           ? () => addToInput('^')
                                           : val === '√'
                                              ? () => addToInput('sqrt(')
-                                             : () => addToInput(val)}>
+                                             : () => addToInputExtra(val)}>
                                  {val}
                               </Button>
                            </Grid>
@@ -270,7 +280,7 @@ function ComplexCalc() {
                         <Grid container spacing='10'>
                            {numberButtons.map((val) => (
                               <Grid item xs={(val === '0') ? 8 : 4} key={val}>
-                                 <Button fullWidth color='primary' variant="contained" style={{ height: '100%' }} onClick={() => addToInput(val)}>
+                                 <Button fullWidth color='primary' variant="contained" style={{ height: '100%' }} onClick={() => addToInputNumber(val)}>
                                     {val}
                                  </Button>
                               </Grid>
@@ -283,7 +293,7 @@ function ComplexCalc() {
                               <Grid item xs={12} key={val} marginLeft='10px'>
                                  <Button fullWidth variant="outlined" style={{ height: '100%' }} onClick={
                                     val === '+'
-                                       ? () => addToInput(val)
+                                       ? () => addToInputExtra(val)
                                        : calculateResult
                                  }>
                                     {val}
