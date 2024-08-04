@@ -268,9 +268,9 @@ function ComplexCalc() {
                                     : val === '<-'
                                        ? handleBackspace
                                        : val === 'x^'
-                                          ? () => addToInput('^ ')
+                                          ? () => addToInputExtra('^')
                                           : val === '√'
-                                             ? () => addToInput('sqrt(')
+                                             ? () => addToInputExtra('sqrt(')
                                              : () => addToInputExtra(val)}>
                                  {val}
                               </Button>
