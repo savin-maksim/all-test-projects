@@ -66,7 +66,7 @@ function Result({ correctAnswer }) {
   );
 }
 
-function Hello() {
+function Hello({ onStart }) {
   return (
     <div className="result">
       <img src="https://polinka.top/uploads/posts/2023-05/1684862377_polinka-top-p-kartinki-garri-pottera-anime-instagram-38.jpg" />
@@ -74,9 +74,10 @@ function Hello() {
       <p>Ты держишь в руках не просто коробку, а портал в мир захватывающих приключений. Но прежде чем ты отправишься в путешествие по лабиринтам знаний о Хогвартсе и его обитателях, один тайный поклонник, желает преподнести тебе нечто особенное.</p>
       <p>Отсканируй этот код, и ты откроешь путь к волшебному сюрпризу.</p>
       <p>Удачи, волшебница!</p>
-      <a href="/">
-        <button>Попробовать снова</button>
-      </a>
+      <img className="QR" src="public/Hello.svg" alt="QR код" />
+      <p className='begins'>
+        <button onClick={onStart}>Начать путешествие</button>
+      </p>
     </div>
   );
 }
@@ -102,9 +103,10 @@ function Game({ step, question, onClickVariant }) {
 
 function App() {
 
-  const [step, setStep] = useState(0)
-  const [correctAnswer, setCorrectAnswer] = useState(0)
-  const question = questions[step]
+  const [showHello, setShowHello] = useState(true);
+  const [step, setStep] = useState(0);
+  const [correctAnswer, setCorrectAnswer] = useState(0);
+  const question = questions[step];
 
   const onClickVariant = (index) => {
     setStep(step + 1)
@@ -112,15 +114,19 @@ function App() {
     if (index === question.correct) {
       setCorrectAnswer(correctAnswer + 1)
     }
-  }
+  };
 
   return (
     <div className="App">
-      {step === 0
-        ? (<Hello />)
-        : (step !== questions.length)
-          ? (<Game step={step} question={question} onClickVariant={onClickVariant} />)
-          : (<Result correctAnswer={correctAnswer} />)}
+      {showHello ? (
+        <Hello onStart={() => setShowHello(false)} />
+      ) : (
+        step !== questions.length ? (
+          <Game step={step} question={question} onClickVariant={onClickVariant} />
+        ) : (
+          <Result correctAnswer={correctAnswer} />
+        )
+      )}
     </div>
   );
 }

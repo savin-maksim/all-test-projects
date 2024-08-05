@@ -42,8 +42,20 @@ body {
     img {
       width: 150px;
     }
-  }
 
+    p {
+      text-align: left;
+    }
+
+    .QR {
+      width: 250px;
+    }
+
+    .begins {
+      text-align: center;
+    }
+  }
+  
   .progress {
     height: 10px;
     border-radius: 30px;

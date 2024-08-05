@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="1111.6666666667" height="1056.7152777778" viewBox="0 0 1111.6666666667 1056.7152777778"><rect width="654.95694444444" height="654.95694444444" fill="#ffffff" x="231.59722222222" y="231.59722222222"/><g transform="scale(46.319444444444)" fill="#000000"><path d="M4.5,4.5L4.5,4.5L4.5,4.5l0,17.2c0,0.3,0.3,0.6,0.6,0.6h13.8c0.3,0,0.6-0.3,0.6-0.6V4.5H4.5z M19,18.6         c0,0.2-0.2,0.4-0.4,0.4H5.4C5.2,19,5,18.8,5,18.6V5.4C5,5.2,5.2,5,5.4,5h13.1C18.8,5,19,5.2,19,5.4V18.6z"/><path d="M19.1,0.1L4.2,1.7l0.3,2.8l14.9-1.6L19.1,0.1z M6.8,3.8L4.9,4l1.7-2.1l1.9-0.2L6.8,3.8z M10.5,3.4L8.6,3.6l1.7-2.1l1.9-0.2 L10.5,3.4z M14.2,3l-1.9,0.2L14,1.1l1.9-0.2L14.2,3z M18,2.6l-1.9,0.2l1.7-2.1l0.9-0.1l0.1,0.9L18,2.6z"/></g><g fill="#000000">
+<g transform="translate(425.83333333333,265.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(465.83333333333,265.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(505.83333333333,265.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(525.83333333333,265.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(605.83333333333,265.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(645.83333333333,265.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(425.83333333333,285.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(465.83333333333,285.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(485.83333333333,285.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(505.83333333333,285.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(525.83333333333,285.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(545.83333333333,285.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(665.83333333333,285.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(425.83333333333,305.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(505.83333333333,305.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(585.83333333333,305.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(645.83333333333,305.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(665.83333333333,305.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(505.83333333333,325.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(565.83333333333,325.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(605.83333333333,325.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(445.83333333333,345.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(485.83333333333,345.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(505.83333333333,345.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(545.83333333333,345.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(565.83333333333,345.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(625.83333333333,345.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(645.83333333333,345.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(665.83333333333,345.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(425.83333333333,365.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(445.83333333333,365.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(465.83333333333,365.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(585.83333333333,365.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(425.83333333333,385.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(465.83333333333,385.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(505.83333333333,385.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(545.83333333333,385.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(585.83333333333,385.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(625.83333333333,385.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(665.83333333333,385.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(425.83333333333,405.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(445.83333333333,405.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(465.83333333333,405.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(485.83333333333,405.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(525.83333333333,405.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(545.83333333333,405.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(565.83333333333,405.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(585.83333333333,405.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(625.83333333333,405.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(645.83333333333,405.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(665.83333333333,405.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(305.83333333333,425.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(325.83333333333,425.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(345.83333333333,425.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(385.83333333333,425.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(425.83333333333,425.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(485.83333333333,425.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(545.83333333333,425.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(585.83333333333,425.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(625.83333333333,425.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(645.83333333333,425.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(665.83333333333,425.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(685.83333333333,425.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(705.83333333333,425.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,425.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(785.83333333333,425.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(805.83333333333,425.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(825.83333333333,425.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(285.83333333333,445.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(305.83333333333,445.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(345.83333333333,445.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(405.83333333333,445.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(465.83333333333,445.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(485.83333333333,445.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(545.83333333333,445.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(625.83333333333,445.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(645.83333333333,445.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(685.83333333333,445.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(705.83333333333,445.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,445.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,445.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(765.83333333333,445.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(825.83333333333,445.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(285.83333333333,465.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(305.83333333333,465.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(325.83333333333,465.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(365.83333333333,465.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(385.83333333333,465.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(445.83333333333,465.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(505.83333333333,465.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(525.83333333333,465.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(625.83333333333,465.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(685.83333333333,465.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(705.83333333333,465.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,465.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(765.83333333333,465.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(785.83333333333,465.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(265.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(325.83333333333,485.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(345.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(425.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(465.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(525.83333333333,485.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(545.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(585.83333333333,485.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(625.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(665.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(685.83333333333,485.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(705.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(745.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(765.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(805.83333333333,485.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(265.83333333333,505.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(305.83333333333,505.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(325.83333333333,505.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(385.83333333333,505.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(425.83333333333,505.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(465.83333333333,505.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(505.83333333333,505.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(525.83333333333,505.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(545.83333333333,505.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(565.83333333333,505.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(605.83333333333,505.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(685.83333333333,505.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,505.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(785.83333333333,505.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(805.83333333333,505.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(825.83333333333,505.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(265.83333333333,525.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(325.83333333333,525.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(365.83333333333,525.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(425.83333333333,525.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(445.83333333333,525.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(465.83333333333,525.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(485.83333333333,525.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(565.83333333333,525.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(585.83333333333,525.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(645.83333333333,525.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(685.83333333333,525.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(705.83333333333,525.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(745.83333333333,525.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(765.83333333333,525.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(825.83333333333,525.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(285.83333333333,545.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(385.83333333333,545.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(405.83333333333,545.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(425.83333333333,545.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(485.83333333333,545.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(505.83333333333,545.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(525.83333333333,545.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(545.83333333333,545.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(565.83333333333,545.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(585.83333333333,545.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(625.83333333333,545.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(685.83333333333,545.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(705.83333333333,545.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,545.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(265.83333333333,565.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(285.83333333333,565.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(325.83333333333,565.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(405.83333333333,565.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(445.83333333333,565.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(505.83333333333,565.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(545.83333333333,565.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(605.83333333333,565.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(625.83333333333,565.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(665.83333333333,565.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(685.83333333333,565.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,565.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(765.83333333333,565.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(825.83333333333,565.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(265.83333333333,585.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(285.83333333333,585.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(305.83333333333,585.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(345.83333333333,585.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(365.83333333333,585.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(385.83333333333,585.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(405.83333333333,585.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(425.83333333333,585.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(445.83333333333,585.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(465.83333333333,585.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(525.83333333333,585.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(605.83333333333,585.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(665.83333333333,585.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(685.83333333333,585.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(765.83333333333,585.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(785.83333333333,585.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(825.83333333333,585.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(265.83333333333,605.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(305.83333333333,605.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(325.83333333333,605.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(465.83333333333,605.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(485.83333333333,605.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(505.83333333333,605.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(545.83333333333,605.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(585.83333333333,605.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(625.83333333333,605.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(645.83333333333,605.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(685.83333333333,605.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(705.83333333333,605.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,605.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,605.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(785.83333333333,605.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(805.83333333333,605.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(825.83333333333,605.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(265.83333333333,625.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(325.83333333333,625.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(345.83333333333,625.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(365.83333333333,625.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(385.83333333333,625.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(405.83333333333,625.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(465.83333333333,625.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(505.83333333333,625.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(525.83333333333,625.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(565.83333333333,625.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(585.83333333333,625.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(705.83333333333,625.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,625.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(265.83333333333,645.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(305.83333333333,645.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(425.83333333333,645.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(465.83333333333,645.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(505.83333333333,645.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(525.83333333333,645.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(545.83333333333,645.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(605.83333333333,645.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(625.83333333333,645.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(705.83333333333,645.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,645.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,645.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(765.83333333333,645.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(805.83333333333,645.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(265.83333333333,665.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(305.83333333333,665.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(345.83333333333,665.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(385.83333333333,665.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(425.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(445.83333333333,665.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(505.83333333333,665.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(525.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(545.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(565.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(585.83333333333,665.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(645.83333333333,665.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(665.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(685.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(705.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(765.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(785.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(805.83333333333,665.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(825.83333333333,665.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(425.83333333333,685.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(445.83333333333,685.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(465.83333333333,685.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(485.83333333333,685.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(525.83333333333,685.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(585.83333333333,685.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(645.83333333333,685.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(665.83333333333,685.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,685.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(765.83333333333,685.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(805.83333333333,685.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(825.83333333333,685.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(445.83333333333,705.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(485.83333333333,705.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(525.83333333333,705.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(645.83333333333,705.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(665.83333333333,705.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(705.83333333333,705.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(745.83333333333,705.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(805.83333333333,705.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(465.83333333333,725.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(545.83333333333,725.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3v0c0-1.7,1.3-3,3-3h3C6,0,6,6,6,6z"/></g>
+<g transform="translate(565.83333333333,725.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(605.83333333333,725.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(625.83333333333,725.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(645.83333333333,725.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(665.83333333333,725.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,725.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(765.83333333333,725.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(425.83333333333,745.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(445.83333333333,745.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(485.83333333333,745.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(565.83333333333,745.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(605.83333333333,745.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(625.83333333333,745.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(665.83333333333,745.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(685.83333333333,745.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(705.83333333333,745.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,745.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,745.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(765.83333333333,745.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(785.83333333333,745.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(425.83333333333,765.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(445.83333333333,765.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(465.83333333333,765.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(505.83333333333,765.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(525.83333333333,765.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(585.83333333333,765.83333333333) scale(3.4333333333333)"><circle cx="3" cy="3" r="3"/></g>
+<g transform="translate(625.83333333333,765.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(645.83333333333,765.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(665.83333333333,765.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(685.83333333333,765.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,765.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(785.83333333333,765.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(425.83333333333,785.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(485.83333333333,785.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3l3,0V6z"/></g>
+<g transform="translate(505.83333333333,785.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(525.83333333333,785.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(545.83333333333,785.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(565.83333333333,785.83333333333) scale(3.4333333333333)"><path d="M6,6H0V0l3,0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(605.83333333333,785.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(645.83333333333,785.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(665.83333333333,785.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(685.83333333333,785.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(705.83333333333,785.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(725.83333333333,785.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,785.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(765.83333333333,785.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(805.83333333333,785.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(445.83333333333,805.83333333333) scale(3.4333333333333)"><path d="M6,6H0V3c0-1.7,1.3-3,3-3h0c1.7,0,3,1.3,3,3V6z"/></g>
+<g transform="translate(485.83333333333,805.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(505.83333333333,805.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(525.83333333333,805.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(545.83333333333,805.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(565.83333333333,805.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(605.83333333333,805.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(645.83333333333,805.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(665.83333333333,805.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l6,0v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(705.83333333333,805.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(745.83333333333,805.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(805.83333333333,805.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(445.83333333333,825.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(485.83333333333,825.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(525.83333333333,825.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(565.83333333333,825.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(605.83333333333,825.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(625.83333333333,825.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(705.83333333333,825.83333333333) scale(3.4333333333333)"><path d="M3,6L3,6C1.3,6,0,4.7,0,3V0h6v3C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(745.83333333333,825.83333333333) scale(3.4333333333333)"><path d="M6,6H3C1.3,6,0,4.7,0,3V0l6,0V6z"/></g>
+<g transform="translate(765.83333333333,825.83333333333) scale(3.4333333333333)"><rect width="6" height="6"/></g>
+<g transform="translate(785.83333333333,825.83333333333) scale(3.4333333333333)"><path d="M3,6H0V0l3,0c1.7,0,3,1.3,3,3v0C6,4.7,4.7,6,3,6z"/></g>
+<g transform="translate(265.83333333333,265.83333333333)"><g transform="scale(10)"><path d="M4.5,14h5.1C12,14,14,12,14,9.6V4.5C14,2,12,0,9.5,0H4.4C2,0,0,2,0,4.4v5.1C0,12,2,14,4.5,14z M12,4.8v4.4 c0,1.5-1.3,2.8-2.8,2.8H4.8C3.2,12,2,10.8,2,9.2V4.8C2,3.3,3.3,2,4.8,2h4.4C10.8,2,12,3.2,12,4.8z"/></g></g>
+<g transform="translate(705.83333333333,265.83333333333)"><g transform="scale(10)"><path d="M4.5,14h5.1C12,14,14,12,14,9.6V4.5C14,2,12,0,9.5,0H4.4C2,0,0,2,0,4.4v5.1C0,12,2,14,4.5,14z M12,4.8v4.4 c0,1.5-1.3,2.8-2.8,2.8H4.8C3.2,12,2,10.8,2,9.2V4.8C2,3.3,3.3,2,4.8,2h4.4C10.8,2,12,3.2,12,4.8z"/></g></g>
+<g transform="translate(265.83333333333,705.83333333333)"><g transform="scale(10)"><path d="M4.5,14h5.1C12,14,14,12,14,9.6V4.5C14,2,12,0,9.5,0H4.4C2,0,0,2,0,4.4v5.1C0,12,2,14,4.5,14z M12,4.8v4.4 c0,1.5-1.3,2.8-2.8,2.8H4.8C3.2,12,2,10.8,2,9.2V4.8C2,3.3,3.3,2,4.8,2h4.4C10.8,2,12,3.2,12,4.8z"/></g></g>
+<g transform="translate(305.83333333333,305.83333333333)"><g transform="scale(10)"><path d="M6,1.8C5.9,1,5.3,0.4,4.5,0.3C3.9,0.2,3.4,0.5,3,0.9C2.6,0.5,2.1,0.3,1.6,0.3C0.8,0.4,0.1,1,0,1.8 C0,2.3,0.1,2.7,0.3,3l0,0l0,0c0.1,0.1,0.2,0.2,0.3,0.3l1.9,2.2c0.3,0.3,0.7,0.3,0.9,0l1.8-1.9c0.1-0.1,0.3-0.3,0.4-0.5 C5.9,2.8,6.1,2.3,6,1.8z"/></g></g>
+<g transform="translate(745.83333333333,305.83333333333)"><g transform="scale(10)"><path d="M6,1.8C5.9,1,5.3,0.4,4.5,0.3C3.9,0.2,3.4,0.5,3,0.9C2.6,0.5,2.1,0.3,1.6,0.3C0.8,0.4,0.1,1,0,1.8 C0,2.3,0.1,2.7,0.3,3l0,0l0,0c0.1,0.1,0.2,0.2,0.3,0.3l1.9,2.2c0.3,0.3,0.7,0.3,0.9,0l1.8-1.9c0.1-0.1,0.3-0.3,0.4-0.5 C5.9,2.8,6.1,2.3,6,1.8z"/></g></g>
+<g transform="translate(305.83333333333,745.83333333333)"><g transform="scale(10)"><path d="M6,1.8C5.9,1,5.3,0.4,4.5,0.3C3.9,0.2,3.4,0.5,3,0.9C2.6,0.5,2.1,0.3,1.6,0.3C0.8,0.4,0.1,1,0,1.8 C0,2.3,0.1,2.7,0.3,3l0,0l0,0c0.1,0.1,0.2,0.2,0.3,0.3l1.9,2.2c0.3,0.3,0.7,0.3,0.9,0l1.8-1.9c0.1-0.1,0.3-0.3,0.4-0.5 C5.9,2.8,6.1,2.3,6,1.8z"/></g></g>
+</g><g transform="translate(501.88749420354,885.08738425926) scale(0.94630474122331)"><path fill="#FFFFFF" d="M53.7109375,111.767578125l-49.072265625-21.337890625l0-11.81640625l49.072265625-21.240234375l0,13.916015625l-34.228515625,13.0859375l34.228515625,13.57421875l0,13.818359375z M62.158203125,100.927734375l13.28125-1.611328125q0.634765625,5.078125,3.41796875,7.763671875t6.73828125,2.685546875q4.248046875,0,7.1533203125-3.22265625t2.9052734375-8.69140625q0-5.17578125-2.783203125-8.203125t-6.787109375-3.02734375q-2.63671875,0-6.298828125,1.025390625l1.513671875-11.181640625q5.56640625,0.146484375,8.49609375-2.4169921875t2.9296875-6.8115234375q0-3.61328125-2.1484375-5.76171875t-5.712890625-2.1484375q-3.515625,0-6.005859375,2.44140625t-3.02734375,7.12890625l-12.646484375-2.1484375q1.318359375-6.494140625,3.9794921875-10.3759765625t7.421875-6.103515625t10.6689453125-2.2216796875q10.107421875,0,16.2109375,6.4453125q5.029296875,5.2734375,5.029296875,11.9140625q0,9.423828125-10.302734375,15.0390625q6.15234375,1.318359375,9.8388671875,5.908203125t3.6865234375,11.083984375q0,9.423828125-6.884765625,16.064453125t-17.138671875,6.640625q-9.716796875,0-16.11328125-5.5908203125t-7.421875-14.6240234375z"/></g></svg>
