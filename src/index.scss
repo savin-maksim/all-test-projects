@@ -55,7 +55,7 @@ body {
       text-align: center;
     }
   }
-  
+
   .progress {
     height: 10px;
     border-radius: 30px;
@@ -118,5 +118,47 @@ body {
         border: 2px solid rgba(0, 0, 0, 0.3);
       }
     }
+  }
+}
+
+/* Добавляем медиазапросы для мобильных устройств */
+@media (max-width: 600px) {
+  body {
+    height: 120vh;
+  }
+
+  .App {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .result img {
+    width: 100px !important;
+  }
+
+  .result .QR {
+    width: 150px !important;
+  }
+
+  .result button {
+    font-size: 16px !important;
+    padding: 10px 20px !important;
+  }
+
+  .result h2 {
+    font-size: 18px !important;
+  }
+
+  .result p {
+    font-size: 14px !important;
+  }
+
+  .progress {
+    margin-bottom: 20px !important;
+  }
+
+  ul li {
+    padding: 10px !important;
+    font-size: 14px !important;
   }
 }
