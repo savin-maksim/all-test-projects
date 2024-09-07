@@ -69,7 +69,7 @@ function ComplexCalc() {
    const addToInputExtra = val => {
       if (input === 'Error') {
          setInput(val);
-      } else if (['/', '*', '-', '+'].includes(input[input.length - 2])) {
+      } else if (['/', '*', '-', '+'].includes(input[input.length - 2]) && val !== '(') {
          setInput(input.slice(0, -3) + val);
       } else {
          setInput(input + val);
@@ -187,7 +187,7 @@ function ComplexCalc() {
                                     {expr} = {historyRes[index]}
                                  </Typography>
                                  <Box sx={{ mt: '8px', justifyContent: 'center' }}>
-                                    <Button variant='outlined' size="small" onClick={() => copyToClipboard(expr)}>Copy Input</Button>
+                                    <Button variant='outlined' size="small" style={{ marginRight: '8px' }} onClick={() => copyToClipboard(expr)}>Copy Input</Button>
                                     <Button variant='outlined' size="small" onClick={() => copyToClipboard(historyRes[index])}>Copy Result</Button>
                                  </Box>
                                  <Snackbar
