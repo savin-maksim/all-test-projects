@@ -103,7 +103,7 @@ function Game({ step, question, onClickVariant }) {
 
 function App() {
 
-  const [showHello, setShowHello] = useState(true);
+  const [showHello, setShowHello] = useState(false);
   const [step, setStep] = useState(0);
   const [correctAnswer, setCorrectAnswer] = useState(0);
   const question = questions[step];
