@@ -4,7 +4,7 @@
   box-sizing: border-box;
   font-family: "Space Mono", monospace;
   font-weight: 700;
-  font-size: clamp(0.5rem, 0.3rem + 1.5vh, 1.2rem);
+  font-size: clamp(0.5rem, 0.1rem + 1.6vh, 1.2rem);
 }
 
 html,
@@ -28,15 +28,15 @@ body,
   html,
   body,
   #root {
-    padding-top: var(--primary-gap);
-    padding-bottom: calc(var(--secondary-gap) / 2);
+    min-height: 100svh;
   }
 }
 
 .card {
   max-width: 30rem;
-  width: 23rem;
-  min-height: 95svh;
+  width: 90%;
+  min-width: 20rem;
+  min-height: 70svh;
   padding: 1rem;
   background-color: white;
   border-radius: 1rem;
@@ -280,6 +280,8 @@ body .MuiSlider-root {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--primary-gap);
+  padding-bottom: calc(var(--primary-gap) * 1.5);
+  margin: var(--primary-gap);
 }
 
 .history-section-top :nth-child(1) {
@@ -292,14 +294,14 @@ body .MuiSlider-root {
 }
 
 .history-section-cards {
-  margin-top: var(--primary-gap);
   border: 1px solid var(--primary-color);
   border-radius: var(--primary-gap);
   padding: var(--primary-gap);
+  margin-bottom: var(--primary-gap);
 }
 
 .history-section-buttons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--primary-gap);
 }
