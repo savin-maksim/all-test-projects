@@ -28,15 +28,15 @@ body,
   html,
   body,
   #root {
-    padding-bottom: 5px;
-    align-items: end;
-    min-height: 120svh;
+    padding-top: var(--primary-gap);
+    padding-bottom: calc(var(--secondary-gap) / 2);
   }
 }
 
 .card {
   max-width: 30rem;
-  width: 90%;
+  width: 23rem;
+  min-height: 95svh;
   padding: 1rem;
   background-color: white;
   border-radius: 1rem;
