@@ -24,6 +24,16 @@ body,
   --button-border-radius: 0.8rem;
 }
 
+@media (max-width: 820px) {
+  html,
+  body,
+  #root {
+    padding-bottom: 5px;
+    align-items: end;
+    min-height: 120svh;
+  }
+}
+
 .card {
   max-width: 30rem;
   width: 90%;
@@ -32,15 +42,12 @@ body,
   border-radius: 1rem;
 }
 
-
-
 button {
   background: var(--primary-color);
   border: none;
   border-radius: var(--button-border-radius);
   padding: clamp(0.5rem, 0.2rem + 1.5vh, 1.2rem) 0;
   color: white;
-  cursor: pointer;
   transition: background-position 0.1s ease, transform 0.1s ease;
   /* Анимация фона и трансформации */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -105,6 +112,7 @@ button {
   button:hover {
     transform: translateY(-2px);
     box-shadow: 0px 6px 15px var(--primary-color);
+    cursor: pointer;
   }
 
   button:active {
