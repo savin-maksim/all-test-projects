@@ -4,7 +4,7 @@
   box-sizing: border-box;
   font-family: "Space Mono", monospace;
   font-weight: 700;
-  font-size: clamp(0.5rem, 0.1rem + 1.6vh, 1.2rem);
+  font-size: clamp(0.9rem, 0.1rem + 1.6vh, 1.2rem);
 }
 
 html,
@@ -36,7 +36,7 @@ body,
   max-width: 30rem;
   width: 90%;
   min-width: 20rem;
-  min-height: 70svh;
+  min-height: 50svh;
   padding: 1rem;
   background-color: white;
   border-radius: 1rem;
