@@ -1,307 +1,408 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  font-family: "Space Mono", monospace;
-  font-weight: 700;
-  font-size: clamp(0.9rem, 0.1rem + 1.6vh, 1.2rem);
-}
-
-html,
-body,
-#root {
   margin: 0;
-  padding: 0;
-  min-height: 100svh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #242424;
-  --primary-color: #646cff;
-  --secondary-color: #494eb1;
-  --primary-gap: 0.7rem;
-  --secondary-gap: 0.5rem;
-  --button-border-radius: 0.8rem;
+  box-sizing: border-box;
+  font-family: "Comfortaa", sans-serif;
 }
 
-@media (max-width: 820px) {
-  html,
-  body,
-  #root {
-    min-height: 100svh;
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }
 
-.card {
-  max-width: 30rem;
-  width: 90%;
-  min-width: 20rem;
-  min-height: 50svh;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 1rem;
+#root {
+  padding: 0;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top left, #ff7b7b, #a777e3, #6fe3ff);
+  background-size: 200% 200%;
+  animation: gradientAnimation 20s ease infinite;
+
+  --primary-color: #cfa4bca4;
+  --primary-padding: clamp(1rem, 3rem + 5vw, 5rem);
+  --secondary-padding: clamp(1rem, 1.5rem + 2.5vw, 2.5rem);
+  --button-border-radius: 0.8rem;
+
+  --h1-clamp: clamp(1.5rem, 1.5rem + 7vw, 6rem);
+  --h2-clamp: clamp(0.75rem, 0.75rem + 3.5vw, 3rem);
+  --h3-clamp: clamp(0.6rem, 0.6rem + 1.75vw, 1.5rem);
+  
 }
+
+html, body {
+  overflow: -moz-scrollbars-none; /* Для Firefox */
+  -ms-overflow-style: none; /* Для Internet Explorer и Edge */
+  scrollbar-width: none; /* Для Firefox */
+}
+
+::-webkit-scrollbar {
+  display: none; /* Для WebKit-браузеров */
+}
+
+
+
+/* GENERAL */
 
 button {
-  background: var(--primary-color);
+  display: grid;
+  font-size: var(--h3-clamp);
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  width: 100%;
+  height: 100%;
   border: none;
   border-radius: var(--button-border-radius);
-  padding: clamp(0.5rem, 0.2rem + 1.5vh, 1.2rem) 0;
-  color: white;
-  transition: background-position 0.1s ease, transform 0.1s ease;
-  /* Анимация фона и трансформации */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: transparent;
 }
 
-.history-button {
-  width: 100%;
-  padding: 0.5rem;
-  text-transform: uppercase;
-  border-radius: var(--button-border-radius);
-  background-color: var(--secondary-color);
-  color: white;
-  position: relative;
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  color: #fff;
-  overflow: hidden;
-
-  span {
-    position: relative;
-    left: -0.5em;
-    transition: all 0.25s;
-  }
-
-  &::before,
-  &::after {
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: var(--secondary-color);
-    transition: all 0.25s;
-    color: #fff;
-  }
-
-  &::before {
-    width: 25px;
-    content: '\f054';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "FontAwesome";
-    font-size: 10px;
-    font-weight: bold;
-    text-indent: 5px;
-    border-radius: 50% 0 0 50%;
-    z-index: 1;
-  }
-
-  &::after {
-    width: 100%;
-    transform: translate(100%, 0);
-    content: attr(data-hover);
-    display: flex;
-    align-items: center;
-    text-align: left;
-    text-indent: 8px;
-  }
-}
-
-@media (hover: hover) {
-  button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 15px var(--primary-color);
+@media (hover :hover) {
+  button {
     cursor: pointer;
   }
-
-  button:active {
-    transform: translateY(3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  .history-button:hover {
-    &:hover {
-      border-color: var(--secondary-color);
-
-      span {
-        left: -100%;
-      }
-
-      &::before {
-        right: 20%;
-      }
-
-      &::after {
-        right: 20%;
-      }
-    }
-  }
-
-  .history-section button:hover {
-    transform: none;
-  }
-
-  .history-section button:active {
-    transform: translateY(3px);
-  }
 }
 
-@media (hover: none) {
-  button:active {
-    transform: translateY(3px);
-    box-shadow: 0px 6px 15px var(--primary-color);
-  }
+h1 {
+  padding-top: 1rem;
+  font-size: var(--h1-clamp);
+  color: white;
 }
 
-.input-history {
+h2 {
+  font-size: var(--h2-clamp);
+  line-height: 1;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  color: white;
+
+}
+
+h3 {
+  font-size: var(--h3-clamp);
+  line-height: 1;
+  padding-top: 0.75rem;
+  padding-bottom: 0.5rem;
+  color: white;
+
+}
+
+input {
+  font-size: var(--h3-clamp);
   width: 100%;
-  height: 2rem;
-  border: none;
-  padding-right: 1rem;
-  text-align: end;
-  opacity: 0.8;
-  background-color: rgba(0, 0, 0, 0.0);
+  color: white;
 }
 
-.input-input {
-  width: 100%;
-  height: 3rem;
-  padding-right: 1rem;
-  text-align: end;
-  border-radius: var(--button-border-radius);
-  border: 1px solid slategray;
+input:focus {
   outline: none;
 }
 
-.input-input:focus {
-  border-color: var(--primary-color);
+input::placeholder {
+  color: white; /* Замените на нужный цвет */
+  opacity: 0.7; /* Сделать плейсхолдер полностью непрозрачным, если нужно */
 }
 
-body .MuiSlider-root {
-  color: var(--secondary-color);
+input[type="number"] {
+  -moz-appearance: textfield;
+  /* Firefox */
 }
 
-.settings {
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  /* Chrome, Safari, Edge, Opera */
+  margin: 0;
+}
+
+/* CONTAINER */
+
+.main-container {
+  min-width: 20rem;
+  width: 90%;
+  max-width: 40rem;
+}
+
+/* TITLE */
+
+.title {
+  text-align: center;
+}
+
+.title :nth-child(1) {
+  padding-top: var(--primary-padding);
+  /* padding-bottom: var(--secondary-padding); */
+  /* border-bottom: 1px solid white; */
+  margin-bottom: var(--secondary-padding);
+}
+
+.title :nth-child(2) {
+  padding-bottom: var(--primary-padding);
+}
+
+.card-title.no-border {
+  border-bottom: none;
+}
+
+/* SECOND SECTION */
+
+.main-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: var(--primary-gap);
-  row-gap: var(--secondary-gap);
-  padding: calc(var(--primary-gap) * 2) 0;
-  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  text-align: center;
+  margin-bottom: var(--secondary-padding);
+  gap: 1rem;
 }
 
-.settings>* {
+.main-buttons h3 {
+  padding-top: 1rem;
+}
+
+/* CARDS */
+
+.card {
+  display: grid;
+  padding: 0 2rem;
+  background: rgba(255, 255, 255, 0.2); /* Прозрачный белый фон */
+  backdrop-filter: blur(10px); /* Размытие фона */
+  -webkit-backdrop-filter: blur(10px); /* Для поддержки в Safari */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Лёгкий белый полупрозрачный бордер */
+  border-radius: var(--secondary-padding);
+  margin-bottom: var(--secondary-padding);
+  min-width: 20rem;
+  width: 100%;
+  max-width: 40rem;
+}
+
+.card-total {
+  display: grid;
+  padding: 0 2rem;
+  background: rgba(255, 255, 255, 0.2); /* Прозрачный белый фон */
+  backdrop-filter: blur(10px); /* Размытие фона */
+  -webkit-backdrop-filter: blur(10px); /* Для поддержки в Safari */
+  border-radius: var(--secondary-padding);
+  margin-bottom: var(--secondary-padding);
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Лёгкий белый полупрозрачный бордер */
+
+  /* box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.2); */
+  min-width: 20rem;
+  width: 100%;
+  max-width: 40rem;
+}
+
+hr {
+  margin-bottom: var(--secondary-padding);
+  border: none;
+  height: 1px;
+  background-color: white;
+}
+
+.card-title {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+}
+
+.card-title-res {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-main {
+  display: grid;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+
+.card-product {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   align-items: center;
 }
 
-.settings :nth-child(3) {
-  grid-column: span 2;
+.card-product-res {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: clamp(0.1rem, 0.1rem + 1vw, 1rem);
 }
 
-.extra-buttons {
+.card-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  margin-bottom: 2rem;
+  border: 1px solid white;
+  border-radius: 1rem;
+  color: white;
+}
+
+/* ICONS */
+
+.icons-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(var(--h2-clamp) / 1.5);
+  width: calc(var(--h2-clamp) / 1.5);
+  color: white;
+}
+
+.icons-style-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(var(--h2-clamp) / 1);
+  width: calc(var(--h2-clamp) / 1);
+  color: white;
+}
+
+/* GENERAL MODAL CARD */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  z-index: 100;
+}
+
+/* MODAL CARD ADD PERSON */
+
+.modal-card {
+  padding: 2rem 2rem;
+  background: rgba(255, 255, 255, 0.2); /* Прозрачный белый фон */
+  backdrop-filter: blur(10px); /* Размытие фона */
+  -webkit-backdrop-filter: blur(10px); /* Для поддержки в Safari */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Лёгкий белый полупрозрачный бордер */  border-radius: var(--secondary-padding);
+  box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.2);
+  min-width: 20rem;
+  width: 90%;
+  max-width: 40rem;
+}
+
+.modal-card-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem
+}
+
+.modal-card-main input {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+}
+
+.modal-card-bottom {
+  height: 3rem;
+  border: 1px solid white;
+  border-radius: 1rem;
+  color: white;
+}
+
+.modal-card-bottom > * {
+  color: white;
+}
+
+/* MODAL CARD ADD PRODUCT */
+
+.modal-card-add-item {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--primary-gap);
-  padding-bottom: var(--primary-gap);
+  grid-template-columns: 2fr 0.2fr 1fr 0.2fr 1fr;
+  row-gap: 2rem;
+  padding-bottom: 2rem;
+  justify-items: center;
+  align-items: center;
+  color: white;
 }
 
-.extra-buttons :nth-child(n) {
-  background-color: var(--secondary-color);
+.modal-card-add-item :nth-child(6) {
+  grid-column: span 5;
 }
 
-.extra-buttons-new-keyboard {
+.modal-card-add-item :nth-child(7) {
+  grid-column: span 5;
+  width: 30%;
+}
+
+.modal-card-add-item input {
+  text-align: center;
+  background-color: transparent;
+  border: none;
+}
+
+.modal-card-add-item button {
+  border: 1px solid white;
+}
+
+/* Modal CARD MANAGE PERSON */
+
+.manage-card-title {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  gap: var(--primary-gap);
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
 }
 
-.extra-buttons-new-keyboard :nth-child(-n+4) {
-  background-color: var(--secondary-color);
-}
-
-.extra-buttons-new-keyboard :nth-child(17) {
-  grid-column-start: 4;
-  grid-row: 5 / 7;
-  background-color: var(--secondary-color);
-}
-
-.extra-buttons-new-keyboard :nth-child(18) {
-  grid-column: span 3;
-}
-
-.extra-buttons-new-keyboard :nth-child(19) {
-  grid-column: span 3;
-}
-
-.keyboard {
+.manage-card-main {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--primary-gap);
+  gap: 2rem
 }
 
-.keyboard :nth-child(4) {
-  grid-row: span 2;
-  background-color: var(--secondary-color);
+.manage-card-main input {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  border-bottom: 1px solid white;
 }
 
-.keyboard :nth-child(11) {
-  grid-row: span 2;
-  background-color: var(--secondary-color);
-}
-
-.keyboard :nth-child(12) {
-  grid-column: span 2;
-}
-
-.history-section {
-  max-height: 90svh;
-  overflow-y: auto;
-}
-
-.history-section::-webkit-scrollbar {
-  display: none;
-}
-
-.history-section button {
-  padding: var(--secondary-gap);
-  text-transform: uppercase;
-  font-size: clamp(0.5rem, 0.3rem + 1vh, 1.2rem);
-}
-
-.history-section h1 {
-  padding-left: var(--primary-gap);
-}
-
-.history-section-top {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--primary-gap);
-  padding-bottom: calc(var(--primary-gap) * 1.5);
-  margin: var(--primary-gap);
-}
-
-.history-section-top :nth-child(1) {
-  grid-column-start: 1;
-  grid-column-end: 4;
-}
-
-.history-section-top :nth-child(2) {
-  grid-column: 4;
-}
-
-.history-section-cards {
-  border: 1px solid var(--primary-color);
-  border-radius: var(--primary-gap);
-  padding: var(--primary-gap);
-  margin-bottom: var(--primary-gap);
-}
-
-.history-section-buttons {
+.manage-card-title button {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--primary-gap);
+  gap: 1rem;
+}
+
+.manage-card-title button>* {
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 1rem;
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: rotateX(-90deg); /* Начальное положение, повёрнутое назад */
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: rotateX(0deg); /* Конечное положение */
+  transition: opacity 300ms ease-in, transform 300ms ease-in; /* Параметры анимации */
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: rotateX(0deg); /* Начальное положение перед выходом */
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: rotateX(-90deg); /* Поворачиваем назад перед исчезновением */
+  transition: opacity 300ms ease-in, transform 300ms ease-in; /* Параметры анимации */
 }

@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import ComplexCalc from './ComplexCalc';
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import SplitCheck from './App/SplitCheck' 
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <ComplexCalc />
-  </React.StrictMode>,
-);
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <SplitCheck />
+  </StrictMode>
+)
