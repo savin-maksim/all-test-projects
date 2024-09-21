@@ -25,10 +25,14 @@ function SplitCheck() {
   const [showAll, setShowAll] = useState(false); // Состояние для показа всех карточек
   const [isGrandTotalVisible, setIsGrandTotalVisible] = useState(false); // Состояние для сворачивания/разворачивания GrandTotalCard
   const [isModalManageGuests, setIsModalManageGuests] = useState(false);
+  const [splitItems, setSplitItems] = useState({});
+
 
   useEffect(() => {
     localStorage.setItem('people', JSON.stringify(people));
-  }, [people]);
+    localStorage.setItem('splitItems', JSON.stringify(splitItems));
+  }, [people, splitItems]);
+
 
   const shareScreenshots = async () => {
     // Захват скриншотов индивидуальных карточек
@@ -141,33 +145,45 @@ function SplitCheck() {
 
   const addOrderItem = (personIndex, item) => {
     const newPeople = [...people];
-    const names = item.splitBy.split(',').map(name => name.trim()).filter(name => name); // Получаем имена из поля splitBy
+    const names = item.splitBy.split(',').map(name => name.trim()).filter(name => name);
     const newId = Math.max(0, ...newPeople[personIndex].orders.map(o => o.id)) + 1;
 
-    if (names.length === 0) {
-      // Если поле splitBy пустое, добавляем элемент только в текущую карточку
+    if (names.length === 0 || names.length === 1) {
       newPeople[personIndex].orders.push({
         ...item,
         id: newId,
-        price: item.price // Полная цена, без деления
+        price: item.price
       });
     } else {
-      // Распределяем элемент между указанными именами
+      const splitPrice = item.price / names.length;
+      const splitItemKey = `${item.name}-${newId}`;
+      
+      setSplitItems(prev => ({
+        ...prev,
+        [splitItemKey]: {
+          originalPrice: item.price,
+          splitBy: names,
+          portions: names.length
+        }
+      }));
+
       names.forEach(name => {
-        const personIndexToUpdate = newPeople.findIndex(person => person.name === name); // Находим индекс существующего человека
+        const personIndexToUpdate = newPeople.findIndex(person => person.name === name);
         if (personIndexToUpdate !== -1) {
           newPeople[personIndexToUpdate].orders.push({
             ...item,
             id: newId,
-            price: item.price / names.length // Делим цену на количество персон
+            price: splitPrice,
+            splitItemKey
           });
         }
       });
     }
 
     setPeople(newPeople);
-    closeModalAddItem(); // Закрываем модальное окно после добавления
+    closeModalAddItem();
   };
+
 
   // Функция для открытия модального окна редактирования
   const editOrderItem = (personIndex, item) => {
@@ -178,9 +194,36 @@ function SplitCheck() {
 
   const removeOrderItem = (personIndex, itemId) => {
     const newPeople = [...people];
+    const itemToRemove = newPeople[personIndex].orders.find(item => item.id === itemId);
+
+    if (itemToRemove && itemToRemove.splitItemKey) {
+      const { splitItemKey } = itemToRemove;
+      setSplitItems(prev => {
+        const updatedSplitItem = { ...prev[splitItemKey] };
+        updatedSplitItem.portions -= 1;
+
+        if (updatedSplitItem.portions > 0) {
+          const newSplitPrice = updatedSplitItem.originalPrice / updatedSplitItem.portions;
+          newPeople.forEach(person => {
+            person.orders = person.orders.map(order => {
+              if (order.splitItemKey === splitItemKey) {
+                return { ...order, price: newSplitPrice };
+              }
+              return order;
+            });
+          });
+          return { ...prev, [splitItemKey]: updatedSplitItem };
+        } else {
+          const { [splitItemKey]: _, ...rest } = prev;
+          return rest;
+        }
+      });
+    }
+
     newPeople[personIndex].orders = newPeople[personIndex].orders.filter(item => item.id !== itemId);
     setPeople(newPeople);
   };
+
 
   // Обновление существующего элемента
   const updateOrderItem = (personIndex, itemId, updatedItem) => {
@@ -207,31 +250,36 @@ function SplitCheck() {
 
   const aggregateOrders = () => {
     const aggregated = {};
-
+  
     people.forEach(person => {
       person.orders.forEach(item => {
-        const key = `${item.name}-${item.price}`; // Ключ для идентификации товара
-
+        const key = item.splitItemKey || `${item.name}-${item.price}`;
+  
         const quantity = parseFloat(item.quantity) || 0;
         const price = parseFloat(item.price) || 0;
-
+  
         if (aggregated[key]) {
-          // Если элемент уже есть в агрегированных данных, добавляем количество
-          aggregated[key].quantity += quantity;
+          if (item.splitItemKey) {
+            aggregated[key].price = Number(splitItems[item.splitItemKey].originalPrice) || 0;
+          } else {
+            aggregated[key].quantity += quantity;
+          }
         } else {
-          // Добавляем новый элемент
           aggregated[key] = {
             name: item.name,
-            quantity: quantity, // Суммируем порции без учёта разделения
-            price: price, // Цена на одну порцию
-            splitBy: item.splitBy // Храним информацию о разделении
+            quantity: item.splitItemKey ? 1 : quantity,
+            price: item.splitItemKey 
+              ? Number(splitItems[item.splitItemKey]?.originalPrice) || 0 
+              : price,
+            isSplit: !!item.splitItemKey
           };
         }
       });
     });
-
-    return Object.values(aggregated); // Преобразуем в массив для рендера
+  
+    return Object.values(aggregated);
   };
+
 
   const calculateGrandTotal = () => {
     return aggregateOrders().reduce((sum, item) => sum + item.quantity * item.price, 0);
@@ -341,13 +389,18 @@ function SplitCheck() {
 export default SplitCheck;
 
 function GrandTotalCard({ items, total, isVisible, toggleVisibility }) {
+  const formatPrice = (price) => {
+    const numPrice = Number(price);
+    return isNaN(numPrice) ? '0.00' : numPrice.toFixed(2);
+  };
+
   return (
     <>
       <div id='grand-total-card' className="card-total">
         <div className={`card-title ${!isVisible ? 'no-border' : ''}`}>
           <h2>Total</h2>
           <div className='card-title-res'>
-            <h2>{total.toFixed(2)}</h2>
+            <h2>{formatPrice(total)}</h2>
             <button onClick={toggleVisibility}>
               {isVisible ? (
                 <CircleChevronUp className="icons-style" />
@@ -364,15 +417,14 @@ function GrandTotalCard({ items, total, isVisible, toggleVisibility }) {
               <div key={index} className='card-product'>
                 <div>
                   <h3>{item.name}</h3>
-                  <h3>{item.quantity} × {item.price.toFixed(2)}</h3>
+                  <h3>{item.quantity} × {formatPrice(item.price)}</h3>
                 </div>
                 <div className='card-product-res'>
                   <div>
-                    {item.splitBy && item.splitBy.split(',').length > 1 && <Split className="icons-style" />}
+                    {item.isSplit && <Split className="icons-style" />}
                   </div>
                   <h3>
-                    {(item.quantity * item.price).toFixed(2)}
-
+                    {formatPrice(item.quantity * item.price)}
                   </h3>
                 </div>
               </div>
