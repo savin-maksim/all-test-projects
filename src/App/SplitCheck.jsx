@@ -98,6 +98,15 @@ function SplitCheck() {
     setPeople(updatedPeople);
   };
 
+  const normalizeName = (name) => {
+    return name
+      .trim() // Убираем начальные и конечные пробелы
+      .toLowerCase() // Приводим к нижнему регистру
+      .replace(/\s+/g, ' ') // Заменяем множественные пробелы на один
+      .split(' ') // Разбиваем на слова
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Делаем первую букву каждого слова заглавной
+      .join(' '); // Соединяем обратно в строку
+  };
 
   const toggleCardVisibility = (index) => {
     const updatedVisibleCards = [...visibleCards];
@@ -145,45 +154,52 @@ function SplitCheck() {
 
   const addOrderItem = (personIndex, item) => {
     const newPeople = [...people];
-    const names = item.splitBy.split(',').map(name => name.trim()).filter(name => name);
-    const newId = Math.max(0, ...newPeople[personIndex].orders.map(o => o.id)) + 1;
-
-    if (names.length === 0 || names.length === 1) {
+    const names = item.splitBy.split(',').map(name => normalizeName(name)).filter(name => name);
+    const newId = Math.max(0, ...newPeople.flatMap(p => p.orders.map(o => o.id))) + 1;
+  
+    const normalizedItemName = normalizeName(item.name);
+  
+    if (names.length <= 1) {
       newPeople[personIndex].orders.push({
         ...item,
         id: newId,
+        name: normalizedItemName,
         price: item.price
       });
     } else {
       const splitPrice = item.price / names.length;
-      const splitItemKey = `${item.name}-${newId}`;
+      const splitItemKey = `${normalizedItemName}-${newId}`;
       
       setSplitItems(prev => ({
         ...prev,
         [splitItemKey]: {
           originalPrice: item.price,
           splitBy: names,
-          portions: names.length
+          portions: names.length,
+          quantity: parseFloat(item.quantity) || 1,
+          name: normalizedItemName
         }
       }));
-
+  
       names.forEach(name => {
-        const personIndexToUpdate = newPeople.findIndex(person => person.name === name);
+        const personIndexToUpdate = newPeople.findIndex(person => normalizeName(person.name) === name);
         if (personIndexToUpdate !== -1) {
           newPeople[personIndexToUpdate].orders.push({
             ...item,
             id: newId,
+            name: normalizedItemName,
             price: splitPrice,
-            splitItemKey
+            splitItemKey,
+            quantity: parseFloat(item.quantity) || 1
           });
         }
       });
     }
-
+  
     setPeople(newPeople);
     closeModalAddItem();
   };
-
+  
 
   // Функция для открытия модального окна редактирования
   const editOrderItem = (personIndex, item) => {
@@ -229,13 +245,45 @@ function SplitCheck() {
   const updateOrderItem = (personIndex, itemId, updatedItem) => {
     const newPeople = [...people];
     const itemIndex = newPeople[personIndex].orders.findIndex(item => item.id === itemId);
+    
     if (itemIndex !== -1) {
-      newPeople[personIndex].orders[itemIndex] = { ...updatedItem, id: itemId };
+      const currentItem = newPeople[personIndex].orders[itemIndex];
+      const normalizedItemName = normalizeName(updatedItem.name);
+      
+      if (currentItem.splitItemKey) {
+        setSplitItems(prev => {
+          const updatedSplitItem = { 
+            ...prev[currentItem.splitItemKey], 
+            quantity: updatedItem.quantity,
+            name: normalizedItemName
+          };
+          return { ...prev, [currentItem.splitItemKey]: updatedSplitItem };
+        });
+        
+        newPeople.forEach(person => {
+          person.orders = person.orders.map(order => {
+            if (order.splitItemKey === currentItem.splitItemKey) {
+              return { ...order, quantity: updatedItem.quantity, name: normalizedItemName };
+            }
+            return order;
+          });
+        });
+      } else {
+        newPeople[personIndex].orders[itemIndex] = { 
+          ...updatedItem, 
+          id: itemId, 
+          name: normalizedItemName 
+        };
+      }
+      
       setPeople(newPeople);
     }
-    setEditingItem(null); // Очищаем редактируемый элемент после обновления
-    closeModalAddItem(); // Закрываем модальное окно после редактирования
+    
+    setEditingItem(null);
+    closeModalAddItem();
   };
+  
+
 
   const calculateItemTotal = (item) => {
     const quantity = parseFloat(item.quantity) || 0;
@@ -253,26 +301,34 @@ function SplitCheck() {
   
     people.forEach(person => {
       person.orders.forEach(item => {
-        const key = item.splitItemKey || `${item.name}-${item.price}`;
+        const isSplitItem = !!item.splitItemKey;
+        const normalizedName = normalizeName(item.name);
+        const key = isSplitItem ? item.splitItemKey : `${normalizedName}-${item.price}`;
   
         const quantity = parseFloat(item.quantity) || 0;
         const price = parseFloat(item.price) || 0;
   
         if (aggregated[key]) {
-          if (item.splitItemKey) {
-            aggregated[key].price = Number(splitItems[item.splitItemKey].originalPrice) || 0;
-          } else {
+          if (!isSplitItem) {
             aggregated[key].quantity += quantity;
           }
         } else {
-          aggregated[key] = {
-            name: item.name,
-            quantity: item.splitItemKey ? 1 : quantity,
-            price: item.splitItemKey 
-              ? Number(splitItems[item.splitItemKey]?.originalPrice) || 0 
-              : price,
-            isSplit: !!item.splitItemKey
-          };
+          if (isSplitItem && splitItems[item.splitItemKey]) {
+            const splitItem = splitItems[item.splitItemKey];
+            aggregated[key] = {
+              name: normalizedName,
+              quantity: splitItem.quantity || quantity,
+              price: splitItem.originalPrice || price,
+              isSplit: true
+            };
+          } else {
+            aggregated[key] = {
+              name: normalizedName,
+              quantity: quantity,
+              price: price,
+              isSplit: isSplitItem
+            };
+          }
         }
       });
     });
@@ -388,10 +444,14 @@ function SplitCheck() {
 
 export default SplitCheck;
 
-function GrandTotalCard({ items, total, isVisible, toggleVisibility }) {
+function GrandTotalCard({ items, isVisible, toggleVisibility }) {
   const formatPrice = (price) => {
     const numPrice = Number(price);
     return isNaN(numPrice) ? '0.00' : numPrice.toFixed(2);
+  };
+
+  const calculateTotal = () => {
+    return items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
   };
 
   return (
@@ -400,7 +460,7 @@ function GrandTotalCard({ items, total, isVisible, toggleVisibility }) {
         <div className={`card-title ${!isVisible ? 'no-border' : ''}`}>
           <h2>Total</h2>
           <div className='card-title-res'>
-            <h2>{formatPrice(total)}</h2>
+            <h2>{formatPrice(calculateTotal())}</h2>
             <button onClick={toggleVisibility}>
               {isVisible ? (
                 <CircleChevronUp className="icons-style" />
