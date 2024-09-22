@@ -49,8 +49,10 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
          setPrice('');
          setSplitBy('');
          setRepeatValue('');
+         onClose(); // Закрываем модальное окно после добавления/редактирования
       }
    };
+
 
    const handleAllButtonClick = () => {
       const allNames = people.map(person => person.name).join(', ');
@@ -62,18 +64,19 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
    };
 
    const handlePriceKeyDown = (e) => {
-      if (item) {
-         if (e.key === 'Enter') {
-            e.preventDefault();
-            submitButtonRef.current?.click();
-         }
-      } else {
-         if (e.key === 'Enter') {
-            e.preventDefault();
-            document.getElementById('splitButton')?.focus();
+      if (e.key === 'Enter') {
+         e.preventDefault();
+         if (name && quantity && price) {
+            handleSubmit(e);
+         } else {
+            // Если какие-то поля не заполнены, фокусируемся на первом пустом поле
+            if (!name) nameRef.current?.focus();
+            else if (!quantity) quantityRef.current?.focus();
+            else if (!price) priceRef.current?.focus();
          }
       }
    };
+
 
    const handleSplitClick = () => {
       setShowSplitInput(true);
