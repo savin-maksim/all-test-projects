@@ -25,6 +25,33 @@ function ComplexCalcV2() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [newKeyboard, setNewKeyboard] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+
+  /// Загрузка данных из localStorage при инициализации компонента
+  useEffect(() => {
+    const savedHistory = JSON.parse(localStorage.getItem('calculatorHistory') || '[]');
+    const savedHistoryRes = JSON.parse(localStorage.getItem('calculatorHistoryRes') || '[]');
+    const savedLastExpression = localStorage.getItem('calculatorLastExpression') || '';
+    const savedShowHistory = JSON.parse(localStorage.getItem('calculatorShowHistory') || 'false');
+    
+    setHistory(savedHistory);
+    setHistoryRes(savedHistoryRes);
+    setLastExpression(savedLastExpression);
+    setShowHistory(savedShowHistory);
+    setIsLoaded(true);
+  }, []);
+
+  // Сохранение данных в localStorage при их изменении
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem('calculatorHistory', JSON.stringify(history));
+      localStorage.setItem('calculatorHistoryRes', JSON.stringify(historyRes));
+      localStorage.setItem('calculatorLastExpression', lastExpression);
+      localStorage.setItem('calculatorShowHistory', JSON.stringify(showHistory));
+    }
+  }, [history, historyRes, lastExpression, showHistory, isLoaded]);
+
 
   const copyToClipboard = useCallback((text) => {
     navigator.clipboard.writeText(text)
@@ -40,12 +67,20 @@ function ComplexCalcV2() {
     setShowHistory(false);
   }, []);
 
+
   const clearHistory = () => {
     setHistory([]);
     setHistoryRes([]);
     setLastExpression('');
     setShowHistory(false);
+    localStorage.removeItem('calculatorHistory');
+    localStorage.removeItem('calculatorHistoryRes');
+    localStorage.removeItem('calculatorLastExpression');
+    localStorage.removeItem('calculatorShowHistory');
   };
+
+
+
 
   const extraButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', '%', ' / ', ' * ', ' - '];
   const keyboard = ['7', '8', '9', ' + ', '4', '5', '6', '1', '2', '3', '=', '0', '.'];
@@ -94,13 +129,12 @@ function ComplexCalcV2() {
       });
 
       const evaluatedResult = math.round(math.evaluate(result), precision);
-      const handleHistory = [...history, input];
-      const handleHistoryRes = [...historyRes, String(evaluatedResult)];
+      const newHistory = [...history, input];
+      const newHistoryRes = [...historyRes, String(evaluatedResult)];
 
-      setLastExpression(`${handleHistory[handleHistory.length - 1]} = ${handleHistoryRes[handleHistoryRes.length - 1]}`);
-      setHistory(handleHistory);
-      setHistoryRes(handleHistoryRes);
-
+      setLastExpression(`${newHistory[newHistory.length - 1]} = ${newHistoryRes[newHistoryRes.length - 1]}`);
+      setHistory(newHistory);
+      setHistoryRes(newHistoryRes);
 
       if (math.isComplex(evaluatedResult)) {
         setInput(`(${evaluatedResult})`);
@@ -112,6 +146,7 @@ function ComplexCalcV2() {
       setInput('Error');
     }
   };
+
 
   const convertToPolar = (input) => {
     try {
@@ -149,6 +184,10 @@ function ComplexCalcV2() {
       calculateResult();
     }
   };
+
+  if (!isLoaded) {
+    return <div>Loading...</div>; // или любой другой индикатор загрузки
+  }
 
   return (
     <div className='card'>
