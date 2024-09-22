@@ -20,7 +20,7 @@ function SplitCheck() {
   const [isModalAddItem, setIsModalAddItem] = useState(false);
   const [modalPersonIndex, setModalPersonIndex] = useState(null);
   const [visibleCards, setVisibleCards] = useState(
-    Array(people.length).fill(true) // По умолчанию все карточки видимы (развернуты)
+    Array(people.length).fill(false) // По умолчанию все карточки видимы (развернуты)
   );
   const [showAll, setShowAll] = useState(false); // Состояние для показа всех карточек
   const [isGrandTotalVisible, setIsGrandTotalVisible] = useState(false); // Состояние для сворачивания/разворачивания GrandTotalCard
@@ -35,6 +35,15 @@ function SplitCheck() {
 
 
   const shareScreenshots = async () => {
+    // Инвертируем видимость карточек перед захватом скриншотов
+    if (showAll) {
+      toggleShowAll();
+    }
+
+
+    // Ждём, чтобы карточки успели измениться в DOM
+    await new Promise(resolve => setTimeout(resolve, 300));
+
     // Захват скриншотов индивидуальных карточек
     for (const person of people) {
       const cardElement = document.getElementById(`card-${person.name}`);
@@ -156,9 +165,9 @@ function SplitCheck() {
     const newPeople = [...people];
     const names = item.splitBy.split(',').map(name => normalizeName(name)).filter(name => name);
     const newId = Math.max(0, ...newPeople.flatMap(p => p.orders.map(o => o.id))) + 1;
-  
+
     const normalizedItemName = normalizeName(item.name);
-  
+
     if (names.length <= 1) {
       newPeople[personIndex].orders.push({
         ...item,
@@ -169,7 +178,7 @@ function SplitCheck() {
     } else {
       const splitPrice = item.price / names.length;
       const splitItemKey = `${normalizedItemName}-${newId}`;
-      
+
       setSplitItems(prev => ({
         ...prev,
         [splitItemKey]: {
@@ -180,7 +189,7 @@ function SplitCheck() {
           name: normalizedItemName
         }
       }));
-  
+
       names.forEach(name => {
         const personIndexToUpdate = newPeople.findIndex(person => normalizeName(person.name) === name);
         if (personIndexToUpdate !== -1) {
@@ -195,11 +204,11 @@ function SplitCheck() {
         }
       });
     }
-  
+
     setPeople(newPeople);
     closeModalAddItem();
   };
-  
+
 
   // Функция для открытия модального окна редактирования
   const editOrderItem = (personIndex, item) => {
@@ -245,21 +254,21 @@ function SplitCheck() {
   const updateOrderItem = (personIndex, itemId, updatedItem) => {
     const newPeople = [...people];
     const itemIndex = newPeople[personIndex].orders.findIndex(item => item.id === itemId);
-    
+
     if (itemIndex !== -1) {
       const currentItem = newPeople[personIndex].orders[itemIndex];
       const normalizedItemName = normalizeName(updatedItem.name);
-      
+
       if (currentItem.splitItemKey) {
         setSplitItems(prev => {
-          const updatedSplitItem = { 
-            ...prev[currentItem.splitItemKey], 
+          const updatedSplitItem = {
+            ...prev[currentItem.splitItemKey],
             quantity: updatedItem.quantity,
             name: normalizedItemName
           };
           return { ...prev, [currentItem.splitItemKey]: updatedSplitItem };
         });
-        
+
         newPeople.forEach(person => {
           person.orders = person.orders.map(order => {
             if (order.splitItemKey === currentItem.splitItemKey) {
@@ -269,20 +278,20 @@ function SplitCheck() {
           });
         });
       } else {
-        newPeople[personIndex].orders[itemIndex] = { 
-          ...updatedItem, 
-          id: itemId, 
-          name: normalizedItemName 
+        newPeople[personIndex].orders[itemIndex] = {
+          ...updatedItem,
+          id: itemId,
+          name: normalizedItemName
         };
       }
-      
+
       setPeople(newPeople);
     }
-    
+
     setEditingItem(null);
     closeModalAddItem();
   };
-  
+
 
 
   const calculateItemTotal = (item) => {
@@ -298,16 +307,16 @@ function SplitCheck() {
 
   const aggregateOrders = () => {
     const aggregated = {};
-  
+
     people.forEach(person => {
       person.orders.forEach(item => {
         const isSplitItem = !!item.splitItemKey;
         const normalizedName = normalizeName(item.name);
         const key = isSplitItem ? item.splitItemKey : `${normalizedName}-${item.price}`;
-  
+
         const quantity = parseFloat(item.quantity) || 0;
         const price = parseFloat(item.price) || 0;
-  
+
         if (aggregated[key]) {
           if (!isSplitItem) {
             aggregated[key].quantity += quantity;
@@ -332,7 +341,7 @@ function SplitCheck() {
         }
       });
     });
-  
+
     return Object.values(aggregated);
   };
 
@@ -347,54 +356,65 @@ function SplitCheck() {
         <h1>Split Check</h1>
       </div>
       <hr />
-      <div className='main-buttons'>
-        <div>
-          <button onClick={toggleShowAll}>
-            {showAll ? (
-              <EyeOff className="icons-style-title" />
-            ) : (
-              <Eye className="icons-style-title" />
-            )}
-          </button>
-        </div>
+      <div className={`main-buttons ${people.length === 0 ? 'single-column' : ''}`}>
+        {/* Отображаем кнопку с глазом только если есть люди */}
+        {people.length > 0 && (
+          <div>
+            <button onClick={toggleShowAll}>
+              {showAll ? (
+                <Eye className="icons-style-title" />
+              ) : (
+                <EyeOff className="icons-style-title" />
+              )}
+            </button>
+          </div>
+        )}
+        {/* Кнопка с плюсом всегда отображается */}
         <div>
           <button onClick={openModalAddPerson}>
             <Plus className="icons-style-title" />
           </button>
         </div>
-        <div>
-          <button onClick={openModalManageGuests}>
-            <UserRoundPen className="icons-style-title" />
+        {/* Отображаем кнопку для управления гостями, если есть люди */}
+        {people.length > 0 && (
+          <div>
+            <button onClick={openModalManageGuests}>
+              <UserRoundPen className="icons-style-title" />
+            </button>
+          </div>
+        )}
+        {/* Кнопка "Поделиться" только при наличии людей */}
+        {people.length > 0 && (
+          <button onClick={shareScreenshots}>
+            <Share2 className="icons-style-title" />
           </button>
-        </div>
-        <button onClick={shareScreenshots}>
-          <Share2 className="icons-style-title" /></button>
+        )}
       </div>
       {people.length > 0 && (
         <GrandTotalCard
           items={aggregateOrders()}
           total={calculateGrandTotal()}
-          isVisible={isGrandTotalVisible}
+          isVisible={!isGrandTotalVisible}
           toggleVisibility={() => setIsGrandTotalVisible(!isGrandTotalVisible)}
         />
       )}
       {people.map((person, personIndex) => (
         <div key={personIndex}>
           <div id={`card-${person.name}`} className="card">
-            <div className={`card-title ${!visibleCards[personIndex] ? 'no-border' : ''}`}>
+            <div className={`card-title ${!visibleCards[personIndex] ? '' : 'no-border'}`}>
               <h2>{person.name}</h2>
               <div className='card-title-res'>
                 <h2>{calculateTotal(person.orders).toFixed(2)}</h2>
                 <button onClick={() => toggleCardVisibility(personIndex)}>
                   {visibleCards[personIndex] ? (
-                    <CircleChevronUp className="icons-style" />
-                  ) : (
                     <CircleChevronDown className="icons-style" />
+                  ) : (
+                    <CircleChevronUp className="icons-style" />
                   )}
                 </button>
               </div>
             </div>
-            {visibleCards[personIndex] && (
+            {!visibleCards[personIndex] && (
               <>
                 <div className='card-main'>
                   {person.orders.map((item) => (
@@ -443,6 +463,8 @@ function SplitCheck() {
 }
 
 export default SplitCheck;
+
+
 
 function GrandTotalCard({ items, isVisible, toggleVisibility }) {
   const formatPrice = (price) => {
