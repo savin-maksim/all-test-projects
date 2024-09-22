@@ -1,4 +1,3 @@
-import { Plus } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
 
 const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
@@ -101,7 +100,7 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
                      id="splitBy"
                      ref={splitByRef}
                      type="text"
-                     placeholder="Split by"
+                     placeholder="Split names (optional)"
                      value={splitBy}
                      onChange={(e) => setSplitBy(e.target.value)}
                      onKeyDown={handleSubmitKeyDown}
