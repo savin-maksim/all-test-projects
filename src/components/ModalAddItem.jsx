@@ -25,13 +25,6 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
       }
    };
 
-   const handleSubmitKeyDown = (e) => {
-      if (e.key === 'Enter') {
-         e.preventDefault();
-         submitButtonRef.current?.click();
-      }
-   };
-
    const handleOverlayClick = (e) => {
       if (e.target === e.currentTarget) {
          onClose();
@@ -57,6 +50,22 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
    const handleAllButtonClick = () => {
       const allNames = people.map(person => person.name).join(', ');
       setSplitBy(allNames);
+   };
+
+   const handlePriceKeyDown = (e) => {
+      if (item) {
+         // Если редактируем элемент, подтверждаем форму
+         if (e.key === 'Enter') {
+            e.preventDefault();
+            submitButtonRef.current?.click();
+         }
+      } else {
+         // Если добавляем элемент, переходим в секцию splitBy
+         if (e.key === 'Enter') {
+            e.preventDefault();
+            splitByRef.current?.focus();
+         }
+      }
    };
 
    return (
@@ -89,25 +98,29 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
                   <input
                      id="price"
                      ref={priceRef}
-                     type="number"
+                     type="text" // Изменено на text
+                     inputMode="numeric" // Добавлено для числовой клавиатуры
                      placeholder="Price"
                      value={price}
                      onChange={(e) => setPrice(e.target.value)}
-                     onKeyDown={(e) => handleKeyDown(e, splitByRef)}
+                     onKeyDown={handlePriceKeyDown}
                      required
                   />
-                  <input
-                     id="splitBy"
-                     ref={splitByRef}
-                     type="text"
-                     placeholder="Split names (optional)"
-                     value={splitBy}
-                     onChange={(e) => setSplitBy(e.target.value)}
-                     onKeyDown={handleSubmitKeyDown}
-                  />
-                  <button style={{display: 'flex', gap: '1rem', color: 'white'}} type="button" onClick={handleAllButtonClick}>
-                     ALL
-                  </button>
+                  {!item && (
+                     <>
+                        <input
+                           id="splitBy"
+                           ref={splitByRef}
+                           type="text"
+                           placeholder="Split names (optional)"
+                           value={splitBy}
+                           onChange={(e) => setSplitBy(e.target.value)}
+                        />
+                        <button style={{display: 'flex', gap: '1rem', color: 'white'}} type="button" onClick={handleAllButtonClick}>
+                           ALL
+                        </button>
+                     </>
+                  )}
                </div>
                <button ref={submitButtonRef} type="submit" className="modal-card-bottom">
                   {item ? 'Update' : 'Add'}

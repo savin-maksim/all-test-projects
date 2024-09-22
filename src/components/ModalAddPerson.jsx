@@ -30,7 +30,7 @@ const ModalAddPerson = ({ show, onClose, value, onChange, onClick }) => {
           <input
             ref={inputRef} // Присваиваем реф инпуту
             type="text"
-            placeholder="Person name"
+            placeholder={`Enter names, separated by " , "`}
             value={value}
             onChange={onChange}
             onKeyDown={handleKeyDown}
