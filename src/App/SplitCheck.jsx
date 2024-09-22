@@ -6,32 +6,186 @@ import ModalAddItem from "../components/ModalAddItem";
 import ModalManageGuests from "../components/ModalManageGuests";
 
 import html2canvas from 'html2canvas';
+import pako from 'pako'; // Добавьте эту библиотеку в ваш проект
 
+
+const encodeData = (data) => {
+  const compressed = pako.deflate(JSON.stringify(data));
+  return btoa(String.fromCharCode.apply(null, compressed))
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+};
+
+// Функция для декодирования и распаковки данных
+const decodeData = (encodedData) => {
+  try {
+    const decoded = atob(encodedData.replace(/-/g, '+').replace(/_/g, '/'));
+    const charCodes = decoded.split('').map(c => c.charCodeAt(0));
+    const decompressed = pako.inflate(new Uint8Array(charCodes));
+    return JSON.parse(new TextDecoder().decode(decompressed));
+  } catch (error) {
+    console.error('Failed to decode data:', error);
+    return null;
+  }
+};
+
+// Функция для оптимизации данных перед сохранением в URL
+const optimizeDataForUrl = (people, splitItems, showAll, visibleCards, isGrandTotalVisible) => {
+  return {
+    p: people.map(person => ({
+      n: person.name,
+      o: person.orders.map(order => ({
+        i: order.id,
+        n: order.name,
+        q: order.quantity,
+        p: order.price,
+        s: order.splitItemKey
+      }))
+    })),
+    s: Object.entries(splitItems).map(([key, item]) => [
+      key,
+      {
+        o: item.originalPrice,
+        s: item.splitBy,
+        p: item.portions,
+        q: item.quantity,
+        n: item.name
+      }
+    ]),
+    a: showAll,
+    v: visibleCards,
+    g: isGrandTotalVisible
+  };
+};
+
+// Функция для восстановления данных из оптимизированного формата
+const restoreDataFromOptimized = (data) => {
+  return {
+    people: data.p.map(person => ({
+      name: person.n,
+      orders: person.o.map(order => ({
+        id: order.i,
+        name: order.n,
+        quantity: order.q,
+        price: order.p,
+        splitItemKey: order.s
+      }))
+    })),
+    splitItems: Object.fromEntries(data.s.map(([key, item]) => [
+      key,
+      {
+        originalPrice: item.o,
+        splitBy: item.s,
+        portions: item.p,
+        quantity: item.q,
+        name: item.n
+      }
+    ])),
+    showAll: data.a,
+    visibleCards: data.v,
+    isGrandTotalVisible: data.g
+  };
+};
 
 
 function SplitCheck() {
   const [people, setPeople] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('data');
+    if (encodedData) {
+      const decodedData = decodeData(encodedData);
+      return decodedData ? restoreDataFromOptimized(decodedData).people : [];
+    }
     const savedPeople = localStorage.getItem('people');
     return savedPeople ? JSON.parse(savedPeople) : [];
   });
+
+  const [splitItems, setSplitItems] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('data');
+    if (encodedData) {
+      const decodedData = decodeData(encodedData);
+      return decodedData ? restoreDataFromOptimized(decodedData).splitItems : {};
+    }
+    const savedSplitItems = localStorage.getItem('splitItems');
+    return savedSplitItems ? JSON.parse(savedSplitItems) : {};
+  });
+
+  const [showAll, setShowAll] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('data');
+    if (encodedData) {
+      const decodedData = decodeData(encodedData);
+      return decodedData ? decodedData.a : false;
+    }
+    return false;
+  });
+
+  const [visibleCards, setVisibleCards] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('data');
+    if (encodedData) {
+      const decodedData = decodeData(encodedData);
+      return decodedData ? decodedData.v : Array(people.length).fill(false);
+    }
+    return Array(people.length).fill(false);
+  });
+
+  const [isGrandTotalVisible, setIsGrandTotalVisible] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('data');
+    if (encodedData) {
+      const decodedData = decodeData(encodedData);
+      return decodedData ? decodedData.g : false;
+    }
+    return false;
+  });
+
   const [newPersonName, setNewPersonName] = useState('');
-  const [editingItem, setEditingItem] = useState(null); // Добавлено состояние для редактирования элемента
+  const [editingItem, setEditingItem] = useState(null);
   const [isModalAddPerson, setIsModalAddPerson] = useState(false);
   const [isModalAddItem, setIsModalAddItem] = useState(false);
   const [modalPersonIndex, setModalPersonIndex] = useState(null);
-  const [visibleCards, setVisibleCards] = useState(
-    Array(people.length).fill(false) // По умолчанию все карточки видимы (развернуты)
-  );
-  const [showAll, setShowAll] = useState(false); // Состояние для показа всех карточек
-  const [isGrandTotalVisible, setIsGrandTotalVisible] = useState(false); // Состояние для сворачивания/разворачивания GrandTotalCard
   const [isModalManageGuests, setIsModalManageGuests] = useState(false);
-  const [splitItems, setSplitItems] = useState({});
-
 
   useEffect(() => {
     localStorage.setItem('people', JSON.stringify(people));
     localStorage.setItem('splitItems', JSON.stringify(splitItems));
-  }, [people, splitItems]);
+    updateURL();
+  }, [people, splitItems, showAll, visibleCards, isGrandTotalVisible]);
+
+
+
+
+  const updateURL = () => {
+    const optimizedData = optimizeDataForUrl(people, splitItems, showAll, visibleCards, isGrandTotalVisible);
+    const encodedData = encodeData(optimizedData);
+    const newUrl = `${window.location.pathname}?data=${encodedData}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+  };
+
+
+
+
+
+  const shareURL = () => {
+    const currentURL = window.location.href;
+    if (navigator.share) {
+      navigator.share({
+        title: 'Split Check',
+        url: currentURL
+      }).then(() => {
+        console.log('Thanks for sharing!');
+      }).catch(console.error);
+    } else {
+      navigator.clipboard.writeText(currentURL).then(() => {
+        alert('URL copied to clipboard!');
+      }).catch(console.error);
+    }
+  };
+
+
 
 
   const shareScreenshots = async () => {
@@ -95,6 +249,8 @@ function SplitCheck() {
   };
 
   const openModalManageGuests = () => setIsModalManageGuests(true);
+  const closeModalManageGuests = () => setIsModalManageGuests(false);
+
 
   const editGuest = (index, newName) => {
     const updatedPeople = [...people];
@@ -126,9 +282,10 @@ function SplitCheck() {
   const toggleShowAll = () => {
     const newShowAll = !showAll;
     setShowAll(newShowAll);
-    setVisibleCards(Array(people.length).fill(newShowAll)); // Обновляем видимость всех карточек
-    setIsGrandTotalVisible(newShowAll); // Сворачиваем/разворачиваем GrandTotalCard вместе с другими карточками
+    setVisibleCards(Array(people.length).fill(newShowAll));
+    setIsGrandTotalVisible(newShowAll);
   };
+
 
   const openModalAddPerson = () => setIsModalAddPerson(true);
   const closeModalAddPerson = () => setIsModalAddPerson(false);
@@ -403,9 +560,14 @@ function SplitCheck() {
         )}
         {/* Кнопка "Поделиться" только при наличии людей */}
         {people.length > 0 && (
-          <button onClick={shareScreenshots}>
-            <Share2 className="icons-style-title" />
-          </button>
+          <>
+            <button onClick={shareURL}>
+              <Share2 className="icons-style-title" />
+            </button>
+            {/* <button onClick={shareURL}>
+              Share URL
+            </button> */}
+          </>
         )}
       </div>
       {people.length > 0 && (
