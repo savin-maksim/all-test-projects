@@ -5,11 +5,15 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
    const [quantity, setQuantity] = useState(item?.quantity || '');
    const [price, setPrice] = useState(item?.price || '');
    const [splitBy, setSplitBy] = useState(item?.splitBy || '');
+   const [showSplitInput, setShowSplitInput] = useState(false);
+   const [showRepeatInput, setShowRepeatInput] = useState(false);
+   const [repeatValue, setRepeatValue] = useState('');
 
    const nameRef = useRef(null);
    const quantityRef = useRef(null);
    const priceRef = useRef(null);
    const splitByRef = useRef(null);
+   const repeatRef = useRef(null);
    const submitButtonRef = useRef(null);
 
    useEffect(() => {
@@ -34,7 +38,7 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
    const handleSubmit = (e) => {
       e.preventDefault();
       if (name && quantity && price) {
-         const newItem = { name, quantity, price, splitBy };
+         const newItem = { name, quantity, price, splitBy, repeat: repeatValue };
          if (item) {
             onEdit(newItem);
          } else {
@@ -44,28 +48,43 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
          setQuantity('');
          setPrice('');
          setSplitBy('');
+         setRepeatValue('');
       }
    };
 
    const handleAllButtonClick = () => {
       const allNames = people.map(person => person.name).join(', ');
-      setSplitBy(allNames);
+      if (showSplitInput) {
+         setSplitBy(allNames);
+      } else if (showRepeatInput) {
+         setRepeatValue(allNames);
+      }
    };
 
    const handlePriceKeyDown = (e) => {
       if (item) {
-         // Если редактируем элемент, подтверждаем форму
          if (e.key === 'Enter') {
             e.preventDefault();
             submitButtonRef.current?.click();
          }
       } else {
-         // Если добавляем элемент, переходим в секцию splitBy
          if (e.key === 'Enter') {
             e.preventDefault();
-            splitByRef.current?.focus();
+            document.getElementById('splitButton')?.focus();
          }
       }
+   };
+
+   const handleSplitClick = () => {
+      setShowSplitInput(true);
+      setShowRepeatInput(false);
+      setTimeout(() => splitByRef.current?.focus(), 0);
+   };
+
+   const handleRepeatClick = () => {
+      setShowRepeatInput(true);
+      setShowSplitInput(false);
+      setTimeout(() => repeatRef.current?.focus(), 0);
    };
 
    return (
@@ -98,8 +117,8 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
                   <input
                      id="price"
                      ref={priceRef}
-                     type="text" // Изменено на text
-                     inputMode="numeric" // Добавлено для числовой клавиатуры
+                     type="text"
+                     inputMode="numeric"
                      placeholder="Price"
                      value={price}
                      onChange={(e) => setPrice(e.target.value)}
@@ -108,17 +127,46 @@ const ModalAddItem = ({ onClose, onAdd, onEdit, item, people }) => {
                   />
                   {!item && (
                      <>
-                        <input
-                           id="splitBy"
-                           ref={splitByRef}
-                           type="text"
-                           placeholder="Split names (optional)"
-                           value={splitBy}
-                           onChange={(e) => setSplitBy(e.target.value)}
-                        />
-                        <button style={{display: 'flex', gap: '1rem', color: 'white'}} type="button" onClick={handleAllButtonClick}>
-                           ALL
-                        </button>
+                        {!showSplitInput && !showRepeatInput && (
+                           <div style={{display: 'flex', gap: '1rem'}}>
+                              <button id="splitButton" type="button" onClick={handleSplitClick} style={{color: 'white'}}>
+                                 Split
+                              </button>
+                              <button type="button" onClick={handleRepeatClick} style={{color: 'white'}}>
+                                 Repeat
+                              </button>
+                           </div>
+                        )}
+                        {showSplitInput && (
+                           <>
+                              <input
+                                 id="splitBy"
+                                 ref={splitByRef}
+                                 type="text"
+                                 placeholder="Split names"
+                                 value={splitBy}
+                                 onChange={(e) => setSplitBy(e.target.value)}
+                              />
+                              <button style={{display: 'flex', gap: '1rem', color: 'white'}} type="button" onClick={handleAllButtonClick}>
+                                 ALL
+                              </button>
+                           </>
+                        )}
+                        {showRepeatInput && (
+                           <>
+                              <input
+                                 id="repeat"
+                                 ref={repeatRef}
+                                 type="text"
+                                 placeholder="Repeat by (names)"
+                                 value={repeatValue}
+                                 onChange={(e) => setRepeatValue(e.target.value)}
+                              />
+                              <button style={{display: 'flex', gap: '1rem', color: 'white'}} type="button" onClick={handleAllButtonClick}>
+                                 ALL
+                              </button>
+                           </>
+                        )}
                      </>
                   )}
                </div>

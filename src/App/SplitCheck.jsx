@@ -164,11 +164,13 @@ function SplitCheck() {
   const addOrderItem = (personIndex, item) => {
     const newPeople = [...people];
     const names = item.splitBy.split(',').map(name => normalizeName(name)).filter(name => name);
+    const repeatNames = item.repeat ? item.repeat.split(',').map(name => normalizeName(name)).filter(name => name) : [];
     const newId = Math.max(0, ...newPeople.flatMap(p => p.orders.map(o => o.id))) + 1;
 
     const normalizedItemName = normalizeName(item.name);
 
-    if (names.length <= 1) {
+    if (names.length <= 1 && repeatNames.length === 0) {
+      // Обычное добавление для одного человека
       newPeople[personIndex].orders.push({
         ...item,
         id: newId,
@@ -190,6 +192,7 @@ function SplitCheck() {
         }
       }));
 
+      // Добавление позиции для разделенных имен
       names.forEach(name => {
         const personIndexToUpdate = newPeople.findIndex(person => normalizeName(person.name) === name);
         if (personIndexToUpdate !== -1) {
@@ -203,11 +206,26 @@ function SplitCheck() {
           });
         }
       });
+
+      // Добавление позиции для повторяющихся имен
+      repeatNames.forEach(name => {
+        const personIndexToUpdate = newPeople.findIndex(person => normalizeName(person.name) === name);
+        if (personIndexToUpdate !== -1) {
+          newPeople[personIndexToUpdate].orders.push({
+            ...item,
+            id: newId,
+            name: normalizedItemName,
+            price: item.price,
+            quantity: parseFloat(item.quantity) || 1
+          });
+        }
+      });
     }
 
     setPeople(newPeople);
     closeModalAddItem();
   };
+
 
 
   // Функция для открытия модального окна редактирования
