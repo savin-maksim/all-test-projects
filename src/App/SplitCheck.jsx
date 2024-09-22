@@ -9,6 +9,7 @@ import html2canvas from 'html2canvas';
 import pako from 'pako'; // Добавьте эту библиотеку в ваш проект
 
 
+
 const encodeData = (data) => {
   const compressed = pako.deflate(JSON.stringify(data));
   return btoa(String.fromCharCode.apply(null, compressed))
@@ -40,7 +41,8 @@ const optimizeDataForUrl = (people, splitItems, showAll, visibleCards, isGrandTo
         n: order.name,
         q: order.quantity,
         p: order.price,
-        s: order.splitItemKey
+        s: order.splitItemKey,
+        b: order.splitBy // Добавляем информацию о разделении
       }))
     })),
     s: Object.entries(splitItems).map(([key, item]) => [
@@ -59,6 +61,7 @@ const optimizeDataForUrl = (people, splitItems, showAll, visibleCards, isGrandTo
   };
 };
 
+
 // Функция для восстановления данных из оптимизированного формата
 const restoreDataFromOptimized = (data) => {
   return {
@@ -69,7 +72,8 @@ const restoreDataFromOptimized = (data) => {
         name: order.n,
         quantity: order.q,
         price: order.p,
-        splitItemKey: order.s
+        splitItemKey: order.s,
+        splitBy: order.b // Восстанавливаем информацию о разделении
       }))
     })),
     splitItems: Object.fromEntries(data.s.map(([key, item]) => [
@@ -87,6 +91,7 @@ const restoreDataFromOptimized = (data) => {
     isGrandTotalVisible: data.g
   };
 };
+
 
 
 function SplitCheck() {
@@ -320,37 +325,44 @@ function SplitCheck() {
 
   const addOrderItem = (personIndex, item) => {
     const newPeople = [...people];
-    const names = item.splitBy.split(',').map(name => normalizeName(name)).filter(name => name);
-    const repeatNames = item.repeat ? item.repeat.split(',').map(name => normalizeName(name)).filter(name => name) : [];
+    const names = Array.isArray(item.splitBy)
+      ? item.splitBy
+      : (item.splitBy ? item.splitBy.split(',') : []);
+    const normalizedNames = names.map(name => normalizeName(name)).filter(name => name);
+
+    const repeatNames = item.repeat
+      ? (Array.isArray(item.repeat) ? item.repeat : item.repeat.split(','))
+      : [];
+    const normalizedRepeatNames = repeatNames.map(name => normalizeName(name)).filter(name => name);
+
     const newId = Math.max(0, ...newPeople.flatMap(p => p.orders.map(o => o.id))) + 1;
 
     const normalizedItemName = normalizeName(item.name);
 
-    if (names.length <= 1 && repeatNames.length === 0) {
-      // Обычное добавление для одного человека
+    if (normalizedNames.length <= 1 && normalizedRepeatNames.length === 0) {
       newPeople[personIndex].orders.push({
         ...item,
         id: newId,
         name: normalizedItemName,
-        price: item.price
+        price: item.price,
+        splitBy: null
       });
     } else {
-      const splitPrice = item.price / names.length;
+      const splitPrice = item.price / normalizedNames.length;
       const splitItemKey = `${normalizedItemName}-${newId}`;
 
       setSplitItems(prev => ({
         ...prev,
         [splitItemKey]: {
           originalPrice: item.price,
-          splitBy: names,
-          portions: names.length,
+          splitBy: normalizedNames,
+          portions: normalizedNames.length,
           quantity: parseFloat(item.quantity) || 1,
           name: normalizedItemName
         }
       }));
 
-      // Добавление позиции для разделенных имен
-      names.forEach(name => {
+      normalizedNames.forEach(name => {
         const personIndexToUpdate = newPeople.findIndex(person => normalizeName(person.name) === name);
         if (personIndexToUpdate !== -1) {
           newPeople[personIndexToUpdate].orders.push({
@@ -359,13 +371,13 @@ function SplitCheck() {
             name: normalizedItemName,
             price: splitPrice,
             splitItemKey,
+            splitBy: normalizedNames,
             quantity: parseFloat(item.quantity) || 1
           });
         }
       });
 
-      // Добавление позиции для повторяющихся имен
-      repeatNames.forEach(name => {
+      normalizedRepeatNames.forEach(name => {
         const personIndexToUpdate = newPeople.findIndex(person => normalizeName(person.name) === name);
         if (personIndexToUpdate !== -1) {
           newPeople[personIndexToUpdate].orders.push({
@@ -373,6 +385,7 @@ function SplitCheck() {
             id: newId,
             name: normalizedItemName,
             price: item.price,
+            splitBy: null,
             quantity: parseFloat(item.quantity) || 1
           });
         }
@@ -605,7 +618,7 @@ function SplitCheck() {
                       </div>
                       <div className='card-product-res'>
                         <div>
-                          {item.splitBy && item.splitBy.split(',').length > 1 && <Split className="icons-style" />}
+                          {item.splitBy && item.splitBy.length > 1 && <Split className="icons-style" />}
                         </div>
                         <h3>
                           {(item.quantity * item.price).toFixed(2)}
