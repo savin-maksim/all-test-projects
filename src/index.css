@@ -410,3 +410,8 @@ hr {
   transform: rotateX(-90deg); /* Поворачиваем назад перед исчезновением */
   transition: opacity 300ms ease-in, transform 300ms ease-in; /* Параметры анимации */
 }
+
+.error-message {
+  color: #9e0000;
+  padding-bottom: 2rem;
+}
