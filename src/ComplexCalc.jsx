@@ -104,7 +104,7 @@ function ComplexCalcV2() {
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
     }
-  
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -221,7 +221,7 @@ function ComplexCalcV2() {
       setInput(`${evaluatedResult}`);
     }
   };
-  const handleVariableSubmit = () => {
+  const handleVariableSubmit = useCallback(() => {
     if (variableName && input !== 'Error') {
       let variableValue = input.trim();
 
@@ -243,7 +243,8 @@ function ComplexCalcV2() {
       setSnackbarMessage('Invalid variable name or value');
       setSnackbarOpen(true);
     }
-  };
+  }, [variableName, input, setVariables, setVariableName, setShowVariableModal, setSnackbarMessage, setSnackbarOpen]);
+
   const resolveNestedVariables = (expr) => {
     let resolvedExpr = expr;
     let variablesUsed = new Set();
@@ -263,11 +264,11 @@ function ComplexCalcV2() {
       const prevExpr = resolvedExpr;
       // Use lookbehind and lookahead to avoid matching parts of other variable names
       resolvedExpr = resolvedExpr.replace(/(?<![a-zA-Z0-9_])([a-zA-Z_][a-zA-Z0-9_]*)(?![a-zA-Z0-9_])/g, resolveVariable);
-      
+
       if (prevExpr === resolvedExpr) {
         break; // Stop if no more replacements were made
       }
-      
+
       iterations++;
     }
 
@@ -286,7 +287,7 @@ function ComplexCalcV2() {
 
       const result = math.evaluate(resolvedExpr);
       const evaluatedResult = math.round(result, precision);
-      
+
       const newHistory = [...history, input];
       const newHistoryRes = [...historyRes, String(evaluatedResult)];
 
@@ -327,7 +328,7 @@ function ComplexCalcV2() {
 
   const extraButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', '%', ' / ', ' * ', ' - '];
   const keyboard = ['7', '8', '9', ' + ', '4', '5', '6', '1', '2', '3', '=', '0', '.'];
-  const extraButtonsNewKeyboard = ['Variable', '?', '(', ')', 'AC', '<-', ' deg ', ' rad ', 'det', 'log', 'sin', 'cos', 'tan', 'pi', '=', 'rad to deg', 'deg to rad'];
+  const extraButtonsNewKeyboard = ['Variable', '?', '(', ')', 'AC', '<-', ' deg ', ' rad ', 'det', 'log', 'sin', 'cos', 'tan', 'pi', '=', ' rad to deg', ' deg to rad'];
 
   return (
     <div className='card'>
@@ -460,13 +461,9 @@ function ComplexCalcV2() {
                                       ? () => addToInputNumber('log(10000, 10)')
                                       : val === '='
                                         ? calculateResult
-                                        : val === 'rad to deg'
-                                          ? () => addToInputExtra(' * 180 / pi ')
-                                          : val === 'deg to rad'
-                                            ? () => addToInputExtra(' * pi / 180 ')
-                                            : val === '?'
-                                              ? handleQuestionMarkClick
-                                              : () => addToInputNumber(val)}>
+                                        : val === '?'
+                                          ? handleQuestionMarkClick
+                                          : () => addToInputNumber(val)}>
                       {val}
                     </button>))}
                 </div>
