@@ -27,6 +27,7 @@ function ComplexCalcV2() {
   const [newKeyboard, setNewKeyboard] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+
   /// Загрузка данных из localStorage при инициализации компонента
   useEffect(() => {
     const savedHistory = JSON.parse(localStorage.getItem('calculatorHistory') || '[]');
@@ -50,9 +51,7 @@ function ComplexCalcV2() {
       localStorage.setItem('calculatorShowHistory', JSON.stringify(showHistory));
     }
   }, [history, historyRes, lastExpression, showHistory, isLoaded]);
-  if (!isLoaded) {
-    return <div>Loading...</div>;
-  }
+
 
   // Clipboard functions
   const copyToClipboard = useCallback((text) => {
@@ -174,6 +173,10 @@ function ComplexCalcV2() {
       setInput('Error');
     }
   };
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   const extraButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', '%', ' / ', ' * ', ' - '];
   const keyboard = ['7', '8', '9', ' + ', '4', '5', '6', '1', '2', '3', '=', '0', '.'];
