@@ -20,7 +20,7 @@ const Modal = ({ isOpen, onClose, children, showSaveButton, onSave }) => {
             background: 'white',
             padding: '1rem',
             borderRadius: 'var(--button-border-radius)',
-            maxWidth: '30rem',
+            maxWidth: '40rem',
             width: '90%',
             minWidth: '20rem',
             maxHeight: '80%',

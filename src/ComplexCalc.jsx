@@ -336,6 +336,24 @@ function ComplexCalcV2() {
               Use variables in your calculations by simply typing their names in the input field.
             </p>
           </div>
+          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
+            <h3 style={{ textAlign: 'center' }}>Interacting with History</h3>
+            <p>
+              When solving multi-step problems, you often need to use previously calculated values. To streamline this process, we've added the following buttons:
+            </p>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
+              <li><button style={{ padding: '0.3rem 1rem', margin: '0.2rem' }}>Paste Input</button> - copies the entered expression</li>
+              <li><button style={{ padding: '0.3rem 1rem', margin: '0.2rem' }}>Paste Result</button> - copies the calculation result</li>
+              <li><button style={{ padding: '0.3rem 1rem', margin: '0.2rem' }}>Paste Variable</button> - copies the variable name</li>
+              <li><button style={{ padding: '0.3rem 1rem', margin: '0.2rem' }}>Paste Value</button> - copies the variable value</li>
+            </ul>
+            <p>
+              Clicking any of these buttons will copy the selected information and automatically append it to the end of the main input field. This allows you to quickly use previous calculations or variables in new computations.
+            </p>
+            <p>
+              To access your history, click the <button style={{ padding: '0.3rem 1rem' }}>history</button> button. In the history window, you can switch between calculation history and saved variables using the <button style={{ padding: '0.3rem 1rem' }}>Variables/Calculations</button> toggle button.
+            </p>
+          </div>
         </div>
       </Modal>
       <Modal
@@ -387,8 +405,8 @@ function ComplexCalcV2() {
                     <button onClick={() => deleteHistoryItem(history.length - index - 1)} style={{ padding: '0.5rem', marginLeft: '1rem' }}>✖</button>
                   </div>
                   <div className='history-section-buttons'>
-                    <button onClick={() => copyToClipboard(expr)}>Copy Input</button>
-                    <button onClick={() => copyToClipboard(historyRes[history.length - index - 1])}>Copy Result</button>
+                    <button onClick={() => copyToClipboard(expr)}>Paste Input</button>
+                    <button onClick={() => copyToClipboard(historyRes[history.length - index - 1])}>Paste Result</button>
                   </div>
                 </div>
               ))
@@ -400,8 +418,8 @@ function ComplexCalcV2() {
                     <button onClick={() => deleteVariableItem(name)} style={{ padding: '0.5rem', marginLeft: '1rem' }}>✖</button>
                   </div>
                   <div className='history-section-buttons'>
-                    <button onClick={() => copyToClipboard(name)}>Copy Variable</button>
-                    <button onClick={() => copyToClipboard(value)}>Copy Value</button>
+                    <button onClick={() => copyToClipboard(name)}>Paste Variable</button>
+                    <button onClick={() => copyToClipboard(value)}>Paste Value</button>
                   </div>
                 </div>
               ))
