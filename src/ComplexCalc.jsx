@@ -282,10 +282,10 @@ function ComplexCalcV2() {
         <h2 style={{ textAlign: 'center' }}>Welcome to the Complex Calculator!</h2>
         <p>To learn how to use this calculator, first click on the</p>
         <div style={{ display: 'flex', justifyContent: 'center', width: '100%', }}>
-          <button style={{ padding: '0.3rem 1rem', width: '30rem' }}>Functions</button>
+          <button style={{ padding: '0.15rem 1rem', width: '30rem' }}>Functions</button>
         </div>
         <p>then click on the
-          <button style={{ marginInline: '1rem', padding: '0.3rem 1rem' }}>?</button></p>
+          <button style={{ marginInline: '1rem', padding: '0.15rem 1rem' }}>?</button></p>
       </Modal>
       <Modal isOpen={showQuestionMarkInstructions} onClose={() => setShowQuestionMarkInstructions(false)}>
         <h2 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Calculator Usage Instructions</h2>
@@ -294,18 +294,18 @@ function ComplexCalcV2() {
             <h3 style={{ textAlign: 'center' }}>Basic Usage</h3>
             <p>
               This calculator functions as a standard text-based calculator.
-              Pay special attention to the <button style={{ padding: '0.3rem 1rem', marginRight: '1rem' }}>(</button><button style={{ padding: '0.3rem 1rem' }}>)</button> buttons,
+              Pay special attention to the <button style={{ padding: '0.15rem 1rem', marginRight: '1rem' }}>(</button><button style={{ padding: '0.15rem 1rem' }}>)</button> buttons,
               as an unclosed pair will result in an <span style={{ color: 'red' }}>Error</span>.
             </p>
           </div>
           <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
             <h3 style={{ textAlign: 'center' }}>Advanced Usage</h3>
             <p>
-              Pressing the <button style={{ padding: '0.3rem 1rem' }}>Functions</button> button reveals an additional keyboard.
+              Pressing the <button style={{ padding: '0.15rem 1rem' }}>Functions</button> button reveals an additional keyboard.
             </p>
             <p>
               Trigonometric functions use <span>radians</span> by default in their calculations,
-              but you can use the <button style={{ padding: '0.3rem 1rem' }}>deg</button>, <button style={{ padding: '0.3rem 1rem' }}>rad</button>, <button style={{ padding: '0.3rem 1rem' }}>grad</button> buttons for automatic conversion.
+              but you can use the <button style={{ padding: '0.15rem 1rem' }}>deg</button>, <button style={{ padding: '0.15rem 1rem' }}>rad</button>, <button style={{ padding: '0.15rem 1rem' }}>grad</button> buttons for automatic conversion.
             </p>
             <p>
               The calculator can convert any <span>physical quantities</span>.
@@ -321,16 +321,16 @@ function ComplexCalcV2() {
               both for manual input and internal calculations.
             </p>
             <p>
-              When you press the <button style={{ padding: '0.3rem 1rem' }}>To Polar</button> button, the complex value output will be in degrees, not radians.
+              When you press the <button style={{ padding: '0.15rem 1rem' }}>To Polar</button> button, the complex value output will be in degrees, not radians.
             </p>
           </div>
           <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
             <h3 style={{ textAlign: 'center' }}>Variables</h3>
             <p>
-              To create a variable, click the <button style={{ padding: '0.3rem 1rem' }}>Variables</button> button. A window will appear where you can <span>name your variable</span>. The current value in the input field will be assigned to this variable.
+              To create a variable, click the <button style={{ padding: '0.15rem 1rem' }}>Variables</button> button. A window will appear where you can <span>name your variable</span>. The current value in the input field will be assigned to this variable.
             </p>
             <p>
-              You can <span>find all created variables</span> in the history section for later use. Access the history by clicking the <button style={{ padding: '0.3rem 1rem' }}>history</button> button, then select <button style={{ padding: '0.3rem 1rem' }}>Variables</button> to view your saved variables.
+              You can <span>find all created variables</span> in the history section for later use. Access the history by clicking the <button style={{ padding: '0.15rem 1rem' }}>history</button> button, then select <button style={{ padding: '0.15rem 1rem' }}>Variables</button> to view your saved variables.
             </p>
             <p>
               Use variables in your calculations by simply typing their names in the input field.
@@ -342,16 +342,16 @@ function ComplexCalcV2() {
               When solving multi-step problems, you often need to use previously calculated values. To streamline this process, we've added the following buttons:
             </p>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
-              <li><button style={{ padding: '0.3rem 1rem', margin: '0.2rem' }}>Paste Input</button> - copies the entered expression</li>
-              <li><button style={{ padding: '0.3rem 1rem', margin: '0.2rem' }}>Paste Result</button> - copies the calculation result</li>
-              <li><button style={{ padding: '0.3rem 1rem', margin: '0.2rem' }}>Paste Variable</button> - copies the variable name</li>
-              <li><button style={{ padding: '0.3rem 1rem', margin: '0.2rem' }}>Paste Value</button> - copies the variable value</li>
+              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Input</button> - copies the entered expression</li>
+              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Result</button> - copies the calculation result</li>
+              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Variable</button> - copies the variable name</li>
+              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Value</button> - copies the variable value</li>
             </ul>
             <p>
               Clicking any of these buttons will copy the selected information and automatically append it to the end of the main input field. This allows you to quickly use previous calculations or variables in new computations.
             </p>
             <p>
-              To access your history, click the <button style={{ padding: '0.3rem 1rem' }}>history</button> button. In the history window, you can switch between calculation history and saved variables using the <button style={{ padding: '0.3rem 1rem' }}>Variables/Calculations</button> toggle button.
+              To access your history, click the <button style={{ padding: '0.15rem 1rem' }}>history</button> button. In the history window, you can switch between calculation history and saved variables using the <button style={{ padding: '0.15rem 1rem' }}>Variables/Calculations</button> toggle button.
             </p>
           </div>
         </div>
