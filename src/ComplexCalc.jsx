@@ -27,14 +27,13 @@ function ComplexCalcV2() {
   const [newKeyboard, setNewKeyboard] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-
   /// Загрузка данных из localStorage при инициализации компонента
   useEffect(() => {
     const savedHistory = JSON.parse(localStorage.getItem('calculatorHistory') || '[]');
     const savedHistoryRes = JSON.parse(localStorage.getItem('calculatorHistoryRes') || '[]');
     const savedLastExpression = localStorage.getItem('calculatorLastExpression') || '';
     const savedShowHistory = JSON.parse(localStorage.getItem('calculatorShowHistory') || 'false');
-    
+
     setHistory(savedHistory);
     setHistoryRes(savedHistoryRes);
     setLastExpression(savedLastExpression);
@@ -51,8 +50,11 @@ function ComplexCalcV2() {
       localStorage.setItem('calculatorShowHistory', JSON.stringify(showHistory));
     }
   }, [history, historyRes, lastExpression, showHistory, isLoaded]);
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
-
+  // Clipboard functions
   const copyToClipboard = useCallback((text) => {
     navigator.clipboard.writeText(text)
       .then(() => {
@@ -66,8 +68,6 @@ function ComplexCalcV2() {
       });
     setShowHistory(false);
   }, []);
-
-
   const clearHistory = () => {
     setHistory([]);
     setHistoryRes([]);
@@ -79,14 +79,7 @@ function ComplexCalcV2() {
     localStorage.removeItem('calculatorShowHistory');
   };
 
-
-
-
-  const extraButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', '%', ' / ', ' * ', ' - '];
-  const keyboard = ['7', '8', '9', ' + ', '4', '5', '6', '1', '2', '3', '=', '0', '.'];
-
-  const extraButtonsNewKeyboard = ['(', ')', 'AC', '<-', ' deg ', ' rad ', ' grad ', '', 'cos', 'sin', 'tan', 'F[x]', 'e', 'pi', 'det', 'log', '=', 'rad to deg', 'deg to rad'];
-
+  // Add functions
   const addToInputNumber = val => {
     if (input === 'Error') {
       setInput(val);
@@ -94,7 +87,6 @@ function ComplexCalcV2() {
       setInput(input + val);
     }
   };
-
   const addToInputExtra = val => {
     if (input === 'Error') {
       setInput(val);
@@ -105,10 +97,10 @@ function ComplexCalcV2() {
     }
   };
 
+  // Clear functions
   const clearInput = () => {
     setInput('');
   }
-
   const handleBackspace = () => {
     if (input === 'Error') {
       setInput('');
@@ -120,6 +112,42 @@ function ComplexCalcV2() {
     }
   };
 
+  //Handle functions
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      calculateResult();
+    }
+  };
+
+  // Math functions
+  const convertToPolar = (input) => {
+    try {
+      const result = input.replace(/\(?\s*(-?\d+(\.\d+)?)\s*[\+\-]\s*(-?\d+(\.\d+)?)i\s*\)?/gi, (_, real, _1, imaginary) => {
+        const absValue = math.evaluate(`sqrt(${real}^2+${imaginary}^2)`);
+        const angleValue = math.evaluate(`atan2(${imaginary}, ${real})*180/pi`);
+        return `(${math.round(absValue, precision)} ∠ ${math.round(angleValue, precision)})`;
+      });
+
+      setInput(`${result}`);
+    } catch (error) {
+      console.log(error);
+      setInput('Error');
+    }
+  };
+  const convertToAlgebraic = () => {
+    const result = input.replace(/(-?\d+(\.\d+)?) ∠ (-?\d+(\.\d+)?)/g, (_, r, _1, phi) => {
+      const a = math.evaluate(`${r}*cos(${phi}*pi/180)`);
+      const b = math.evaluate(`${r}*sin(${phi}*pi/180)`);
+      return `${math.round(a, precision)} + ${math.round(b, precision)}i`;
+    });
+    const evaluatedResult = math.evaluate(result);
+
+    if (math.isComplex(evaluatedResult)) {
+      setInput(`(${evaluatedResult})`);
+    } else {
+      setInput(`${evaluatedResult}`);
+    }
+  };
   const calculateResult = () => {
     try {
       const result = input.replace(/(-?\d+(\.\d+)?) ∠ (-?\d+(\.\d+)?)/g, (_, r, _1, phi) => {
@@ -147,47 +175,9 @@ function ComplexCalcV2() {
     }
   };
 
-
-  const convertToPolar = (input) => {
-    try {
-      const result = input.replace(/\(?\s*(-?\d+(\.\d+)?)\s*[\+\-]\s*(-?\d+(\.\d+)?)i\s*\)?/gi, (_, real, _1, imaginary) => {
-        const absValue = math.evaluate(`sqrt(${real}^2+${imaginary}^2)`);
-        const angleValue = math.evaluate(`atan2(${imaginary}, ${real})*180/pi`);
-        return `(${math.round(absValue, precision)} ∠ ${math.round(angleValue, precision)})`;
-      });
-
-      setInput(`${result}`);
-    } catch (error) {
-      console.log(error);
-      setInput('Error');
-    }
-  };
-
-
-  const convertToAlgebraic = () => {
-    const result = input.replace(/(-?\d+(\.\d+)?) ∠ (-?\d+(\.\d+)?)/g, (_, r, _1, phi) => {
-      const a = math.evaluate(`${r}*cos(${phi}*pi/180)`);
-      const b = math.evaluate(`${r}*sin(${phi}*pi/180)`);
-      return `${math.round(a, precision)} + ${math.round(b, precision)}i`;
-    });
-    const evaluatedResult = math.evaluate(result);
-
-    if (math.isComplex(evaluatedResult)) {
-      setInput(`(${evaluatedResult})`);
-    } else {
-      setInput(`${evaluatedResult}`);
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      calculateResult();
-    }
-  };
-
-  if (!isLoaded) {
-    return <div>Loading...</div>; // или любой другой индикатор загрузки
-  }
+  const extraButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', '%', ' / ', ' * ', ' - '];
+  const keyboard = ['7', '8', '9', ' + ', '4', '5', '6', '1', '2', '3', '=', '0', '.'];
+  const extraButtonsNewKeyboard = ['(', ')', 'AC', '<-', ' deg ', ' rad ', ' grad ', '', 'cos', 'sin', 'tan', 'F[x]', 'e', 'pi', 'det', 'log', '=', 'rad to deg', 'deg to rad'];
 
   return (
     <div className='card'>
