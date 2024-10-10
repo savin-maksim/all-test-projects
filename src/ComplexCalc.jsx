@@ -1,15 +1,12 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Slider } from '@mui/material';
-import { create, all, unit, evaluate } from 'mathjs';
-import Modal from './Modal';
+import { create, all, evaluate } from 'mathjs';
+import { InitialTutorialModal } from './Modal/InitialTutorialModal';
+import { QuestionMarkInstructionsModal } from './Modal/QuestionMarkInstructionsModal';
+import { VariableModal } from './Modal/VariableModal';
 
-// configure the default type of numbers as BigNumbers
 const initialConfig = {
-  // Default type of number
-  // Available options: 'number' (default), 'BigNumber', or 'Fraction'
   number: 'BigNumber',
-
-  // Number of significant digits for BigNumbers
   precision: 20
 };
 
@@ -38,7 +35,15 @@ function ComplexCalcV2() {
   const [showVariableModal, setShowVariableModal] = useState(false);
   const [variableName, setVariableName] = useState('');
   const [showVariablesHistory, setShowVariablesHistory] = useState(false);
-  const [historyType, setHistoryType] = useState('calculations'); // 'calculations' or 'variables'
+  const [historyType, setHistoryType] = useState('calculations');
+
+  const historyRef = useRef(null);
+
+  const handleClickOutside = useCallback((event) => {
+    if (historyRef.current && !historyRef.current.contains(event.target)) {
+      setShowHistory(false);
+    }
+  }, []);
 
   const toggleHistoryType = () => {
     setHistoryType(prevType => prevType === 'calculations' ? 'variables' : 'calculations');
@@ -93,13 +98,24 @@ function ComplexCalcV2() {
     }
   }, [history, historyRes, lastExpression, showHistory, variables, isLoaded]);
 
+  useEffect(() => {
+    if (showHistory) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showHistory, handleClickOutside]);
+
   // Scroll Input
   const scrollInputToEnd = useCallback(() => {
     if (inputRef.current) {
       inputRef.current.scrollLeft = inputRef.current.scrollWidth;
     }
   }, []);
-
 
   // Clipboard functions
   const copyToClipboard = useCallback((text) => {
@@ -205,23 +221,72 @@ function ComplexCalcV2() {
       setInput(`${evaluatedResult}`);
     }
   };
+  const handleVariableSubmit = () => {
+    if (variableName && input !== 'Error') {
+      let variableValue = input.trim();
+
+      if (!(variableValue.startsWith('(') && variableValue.endsWith(')'))) {
+        variableValue = `(${variableValue})`;
+      }
+
+      setVariables(prevVariables => ({
+        ...prevVariables,
+        [variableName]: variableValue
+      }));
+
+      setVariableName('');
+      setShowVariableModal(false);
+
+      setSnackbarMessage(`Variable "${variableName}" saved successfully`);
+      setSnackbarOpen(true);
+    } else {
+      setSnackbarMessage('Invalid variable name or value');
+      setSnackbarOpen(true);
+    }
+  };
+  const resolveNestedVariables = (expr) => {
+    let resolvedExpr = expr;
+    let variablesUsed = new Set();
+    let iterations = 0;
+    const maxIterations = 100; // Prevent infinite loops
+
+    const resolveVariable = (match, varName) => {
+      if (variables[varName]) {
+        variablesUsed.add(varName);
+        // Remove outer parentheses if present, then wrap in parentheses
+        return `(${variables[varName].replace(/^\((.+)\)$/, '$1')})`;
+      }
+      return match; // Return the original match if variable not found
+    };
+
+    while (iterations < maxIterations) {
+      const prevExpr = resolvedExpr;
+      // Use lookbehind and lookahead to avoid matching parts of other variable names
+      resolvedExpr = resolvedExpr.replace(/(?<![a-zA-Z0-9_])([a-zA-Z_][a-zA-Z0-9_]*)(?![a-zA-Z0-9_])/g, resolveVariable);
+      
+      if (prevExpr === resolvedExpr) {
+        break; // Stop if no more replacements were made
+      }
+      
+      iterations++;
+    }
+
+    if (iterations === maxIterations) {
+      const unresolvedVariables = resolvedExpr.match(/\b[a-zA-Z_][a-zA-Z0-9_]*\b/g) || [];
+      throw new Error(`Max iterations reached. Possible circular reference or undefined variables: ${unresolvedVariables.join(', ')}`);
+    }
+
+    return { resolvedExpr, variablesUsed: Array.from(variablesUsed) };
+  };
   const calculateResult = () => {
     try {
-      let result = input;
+      const { resolvedExpr, variablesUsed } = resolveNestedVariables(input);
 
-      // Replace variable names with their values
-      Object.entries(variables).forEach(([name, value]) => {
-        const regex = new RegExp(`\\b${name}\\b`, 'g');
-        result = result.replace(regex, value);
-      });
+      console.log("Resolved expression:", resolvedExpr); // For debugging
 
-      result = result.replace(/(-?\d+(\.\d+)?) ∠ (-?\d+(\.\d+)?)/g, (_, r, _1, phi) => {
-        const a = math.evaluate(`${r}*cos(${phi}*pi/180)`);
-        const b = math.evaluate(`${r}*sin(${phi}*pi/180)`);
-        return `${a} + ${b}i`;
-      });
-
-      const evaluatedResult = math.round(math.evaluate(result), precision);
+      const result = math.evaluate(resolvedExpr);
+      const evaluatedResult = math.round(result, precision);
+      
       const newHistory = [...history, input];
       const newHistoryRes = [...historyRes, String(evaluatedResult)];
 
@@ -234,36 +299,24 @@ function ComplexCalcV2() {
       } else {
         setInput(`${evaluatedResult}`);
       }
-    } catch (error) {
-      console.log(error)
-      setInput('Error');
-    }
-  };
 
-  const handleVariableSubmit = () => {
-    if (variableName && input !== 'Error') {
-      let variableValue = input.trim();
-
-      // Check if the expression starts and ends with parentheses
-      if (!(variableValue.startsWith('(') && variableValue.endsWith(')'))) {
-        // If not, add parentheses
-        variableValue = `(${variableValue})`;
+      // Show which variables were used in the calculation
+      if (variablesUsed.length > 0) {
+        setSnackbarMessage(`Used variables: ${variablesUsed.join(', ')}`);
+        setSnackbarOpen(true);
       }
+    } catch (error) {
+      console.log(error);
+      const { resolvedExpr, variablesUsed } = resolveNestedVariables(input);
+      const newHistory = [...history, input];
+      const newHistoryRes = [...historyRes, String(evaluate(resolvedExpr))];
 
-      setVariables(prevVariables => ({
-        ...prevVariables,
-        [variableName]: variableValue
-      }));
+      setLastExpression(`${newHistory[newHistory.length - 1]} = ${newHistoryRes[newHistoryRes.length - 1]}`);
+      setHistory(newHistory);
+      setHistoryRes(newHistoryRes);
 
-      setVariableName('');
-      setShowVariableModal(false);
-
-      // Optional: Show a confirmation message
-      setSnackbarMessage(`Variable "${variableName}" saved successfully`);
-      setSnackbarOpen(true);
-    } else {
-      // Optional: Show an error message
-      setSnackbarMessage('Invalid variable name or value');
+      setInput(evaluate(resolvedExpr));
+      setSnackbarMessage(error.message);
       setSnackbarOpen(true);
     }
   };
@@ -278,110 +331,24 @@ function ComplexCalcV2() {
 
   return (
     <div className='card'>
-      <Modal isOpen={showInitialTutorial} onClose={() => setShowInitialTutorial(false)}>
-        <h2 style={{ textAlign: 'center' }}>Welcome to the Complex Calculator!</h2>
-        <p>To learn how to use this calculator, first click on the</p>
-        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', }}>
-          <button style={{ padding: '0.15rem 1rem', width: '30rem' }}>Functions</button>
-        </div>
-        <p>then click on the
-          <button style={{ marginInline: '1rem', padding: '0.15rem 1rem' }}>?</button></p>
-      </Modal>
-      <Modal isOpen={showQuestionMarkInstructions} onClose={() => setShowQuestionMarkInstructions(false)}>
-        <h2 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Calculator Usage Instructions</h2>
-        <div style={{ display: 'grid', gap: '1rem', marginBottom: '1rem' }}>
-          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
-            <h3 style={{ textAlign: 'center' }}>Basic Usage</h3>
-            <p>
-              This calculator functions as a standard text-based calculator.
-              Pay special attention to the <button style={{ padding: '0.15rem 1rem', marginRight: '1rem' }}>(</button><button style={{ padding: '0.15rem 1rem' }}>)</button> buttons,
-              as an unclosed pair will result in an <span style={{ color: 'red' }}>Error</span>.
-            </p>
-          </div>
-          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
-            <h3 style={{ textAlign: 'center' }}>Advanced Usage</h3>
-            <p>
-              Pressing the <button style={{ padding: '0.15rem 1rem' }}>Functions</button> button reveals an additional keyboard.
-            </p>
-            <p>
-              Trigonometric functions use <span>radians</span> by default in their calculations,
-              but you can use the <button style={{ padding: '0.15rem 1rem' }}>deg</button>, <button style={{ padding: '0.15rem 1rem' }}>rad</button>, <button style={{ padding: '0.15rem 1rem' }}>grad</button> buttons for automatic conversion.
-            </p>
-            <p>
-              The calculator can convert any <span>physical quantities</span>.
-            </p>
-          </div>
-          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
-            <h3 style={{ textAlign: 'center' }}>Complex Numbers</h3>
-            <p>
-              For <span>algebraic form</span>, use the format <span>a + bi</span>.
-            </p>
-            <p>
-              In <span>polar form</span>, <span>degrees</span> are always used
-              both for manual input and internal calculations.
-            </p>
-            <p>
-              When you press the <button style={{ padding: '0.15rem 1rem' }}>To Polar</button> button, the complex value output will be in degrees, not radians.
-            </p>
-          </div>
-          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
-            <h3 style={{ textAlign: 'center' }}>Variables</h3>
-            <p>
-              To create a variable, click the <button style={{ padding: '0.15rem 1rem' }}>Variables</button> button. A window will appear where you can <span>name your variable</span>. The current value in the input field will be assigned to this variable.
-            </p>
-            <p>
-              You can <span>find all created variables</span> in the history section for later use. Access the history by clicking the <button style={{ padding: '0.15rem 1rem' }}>history</button> button, then select <button style={{ padding: '0.15rem 1rem' }}>Variables</button> to view your saved variables.
-            </p>
-            <p>
-              Use variables in your calculations by simply typing their names in the input field.
-            </p>
-          </div>
-          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
-            <h3 style={{ textAlign: 'center' }}>Interacting with History</h3>
-            <p>
-              When solving multi-step problems, you often need to use previously calculated values. To streamline this process, we've added the following buttons:
-            </p>
-            <ul style={{ listStyleType: 'none', padding: 0 }}>
-              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Input</button> - pastes the entered expression</li>
-              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Result</button> - pastes the calculation result</li>
-              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Variable</button> - pastes the variable name</li>
-              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Value</button> - pastes the variable value</li>
-            </ul>
-            <p>
-              Clicking any of these buttons will copy the selected information and automatically append it to the end of the main input field. This allows you to quickly use previous calculations or variables in new computations.
-            </p>
-            <p>
-              To access your history, click the <button style={{ padding: '0.15rem 1rem' }}>history</button> button. In the history window, you can switch between calculation history and saved variables using the <button style={{ padding: '0.15rem 1rem' }}>Variables/Calculations</button> toggle button.
-            </p>
-          </div>
-        </div>
-      </Modal>
-      <Modal
+      <InitialTutorialModal
+        isOpen={showInitialTutorial}
+        onClose={() => setShowInitialTutorial(false)}
+      />
+      <QuestionMarkInstructionsModal
+        isOpen={showQuestionMarkInstructions}
+        onClose={() => setShowQuestionMarkInstructions(false)}
+      />
+      <VariableModal
         isOpen={showVariableModal}
         onClose={() => setShowVariableModal(false)}
-        showSaveButton={true}
         onSave={handleVariableSubmit}
-      >
-        <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>Create Variable</h2>
-        <input
-          value={variableName}
-          onChange={(e) => setVariableName(e.target.value)}
-          placeholder="Enter variable name"
-          style={{
-            width: '100%',
-            height: '3rem',
-            paddingRight: '1rem',
-            textAlign: 'end',
-            borderRadius: 'var(--button-border-radius)',
-            border: '1px solid slategray',
-            outline: 'none',
-            fontSize: '1rem',
-          }}
-        />
-        <p style={{ textAlign: 'center' }}>Current value: {input}</p>
-      </Modal>
+        variableName={variableName}
+        setVariableName={setVariableName}
+        currentValue={input}
+      />
       {showHistory ? (
-        <div className='history-section'>
+        <div className='history-section' ref={historyRef}>
           <div className='history-section-top'>
             <button onClick={clearHistory}>
               Clear {historyType === 'calculations' ? 'History' : 'Variables'}

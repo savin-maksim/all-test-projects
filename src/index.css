@@ -279,7 +279,7 @@ body .MuiSlider-root {
 }
 
 .history-section {
-  max-height: 90svh;
+  max-height: 80svh;
   overflow-y: auto;
 }
 
