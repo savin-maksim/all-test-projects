@@ -342,10 +342,10 @@ function ComplexCalcV2() {
               When solving multi-step problems, you often need to use previously calculated values. To streamline this process, we've added the following buttons:
             </p>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
-              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Input</button> - copies the entered expression</li>
-              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Result</button> - copies the calculation result</li>
-              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Variable</button> - copies the variable name</li>
-              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Value</button> - copies the variable value</li>
+              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Input</button> - pastes the entered expression</li>
+              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Result</button> - pastes the calculation result</li>
+              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Variable</button> - pastes the variable name</li>
+              <li><button style={{ padding: '0.15rem 1rem', margin: '0.2rem' }}>Paste Value</button> - pastes the variable value</li>
             </ul>
             <p>
               Clicking any of these buttons will copy the selected information and automatically append it to the end of the main input field. This allows you to quickly use previous calculations or variables in new computations.
