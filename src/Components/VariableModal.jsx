@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Modal from './Global/Modal';
+import Modal from '../Components/Modal';
 
 export const VariableModal = ({ isOpen, onClose, onSave, variableName, setVariableName, currentValue }) => {
   const inputRef = useRef(null);

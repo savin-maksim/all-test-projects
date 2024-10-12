@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from './Global/Modal';
+import Modal from '../Components/Modal';
 
 export const InitialTutorialModal = ({ isOpen, onClose }) => (
   <Modal isOpen={isOpen} onClose={onClose}>

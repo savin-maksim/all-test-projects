@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Slider } from '@mui/material';
 import { create, all, evaluate } from 'mathjs';
-import { InitialTutorialModal } from './Modal/InitialTutorialModal';
-import { QuestionMarkInstructionsModal } from './Modal/QuestionMarkInstructionsModal';
-import { VariableModal } from './Modal/VariableModal';
+import { InitialTutorialModal } from '../Components/InitialTutorialModal';
+import { QuestionMarkInstructionsModal } from '../Components/QuestionMarkInstructionsModal';
+import { VariableModal } from '../Components/VariableModal';
 
 const initialConfig = {
   number: 'BigNumber',
@@ -331,7 +331,7 @@ function ComplexCalcV2() {
   const extraButtonsNewKeyboard = ['Variable', '?', '(', ')', 'AC', '<-', ' deg ', ' rad ', 'det', 'log', 'sin', 'cos', 'tan', 'pi', '=', ' rad to deg', ' deg to rad'];
 
   return (
-    <div className='card'>
+    <main className='card'>
       <InitialTutorialModal
         isOpen={showInitialTutorial}
         onClose={() => setShowInitialTutorial(false)}
@@ -501,7 +501,7 @@ function ComplexCalcV2() {
           </div>
         </>
       )}
-    </div>
+    </main>
   )
 }
 
