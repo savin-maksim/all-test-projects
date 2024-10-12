@@ -66,10 +66,6 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
                      <td style={{ padding: '0.5rem', border: '1px solid #ddd' }}>gram(g), tonne, ton, grain (gr), dram (dr), ounce (oz), poundmass (lbm, lb, lbs), hundredweight (cwt), stick, stone</td>
                   </tr>
                   <tr>
-                     <td style={{ padding: '0.5rem', border: '1px solid #ddd' }}>Electric current</td>
-                     <td style={{ padding: '0.5rem', border: '1px solid #ddd' }}>ampere (A)</td>
-                  </tr>
-                  <tr>
                      <td style={{ padding: '0.5rem', border: '1px solid #ddd' }}>Temperature</td>
                      <td style={{ padding: '0.5rem', border: '1px solid #ddd' }}>kelvin (K), celsius (degC), fahrenheit (degF), rankine (degR)</td>
                   </tr>
