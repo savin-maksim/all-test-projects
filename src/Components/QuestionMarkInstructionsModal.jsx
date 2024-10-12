@@ -10,7 +10,7 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
             <p>
                This calculator functions as a standard text-based calculator.
                Pay special attention to the <button style={{ padding: '0.15rem 1rem', marginRight: '1rem' }}>(</button><button style={{ padding: '0.15rem 1rem' }}>)</button> buttons,
-               as an unclosed pair will result in an <span style={{ color: 'red' }}>Error</span>.
+               as <strong style={{ color: 'orangered' }}>an unclosed pair will prevent the calculation from being performed</strong>.
             </p>
          </div>
          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
@@ -112,11 +112,11 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
             </p>
             <ul style={{ listStyleType: 'none', padding: '0 1rem' }}>
                <li>2 inch to cm = 5.08 cm</li>
-               <li>cos(45 deg) = 0.70710678118655</li>
-               <li>90 km/h to m/s = 25 m / s</li>
+               <li>cos(45 deg) = 0.707</li>
+               <li>90 km/h to m/s = 25 m/s</li>
                <li>100000 N / m^2 = 100 kPa</li>
                <li>9.81 m/s^2 * 100 kg * 40 m = 39.24 kJ</li>
-               <li>460 V * 20 A * 30 days to kWh</li>
+               <li>460 V * 20 A * 30 days to kWh = 6624 kWh</li>
             </ul>
 
             <p style={{ marginTop: '1rem' }}>
@@ -128,9 +128,9 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
                D = 30 days
             </p>
             <span>Calculate energy in kWh</span>
-            <p>Vol * I * D to kWh = 66624 kWh</p>
+            <p>Vol * I * D to kWh = 6624 kWh</p>
             <p>
-               <span>Note:</span> When defining variables, make sure not to use names that match unit symbols (like "V" for volts or "A" for amperes) to avoid conflicts.
+               <span style={{ color: 'var(--primary-color)' }}>Note: When defining variables, make sure not to use names that match unit symbols (like "V" for volts or "A" for amperes) to avoid conflicts.</span>
             </p>
          </div>
          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
@@ -177,6 +177,11 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
                To access your history, click the <button style={{ padding: '0.15rem 1rem' }}>history</button> button. In the history window, you can switch between calculation history and saved variables using the <button style={{ padding: '0.15rem 1rem' }}>Variables/Calculations</button> toggle button.
             </p>
          </div>
+         <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
+            <strong style={{ color: 'var(--primary-color)' }}>
+               All additional windows, including history cards, can be closed by clicking anywhere outside of the cards.
+            </strong>
+         </div>
       </div>
-   </Modal >
+   </Modal>
 );

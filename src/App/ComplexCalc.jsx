@@ -335,6 +335,7 @@ function ComplexCalcV2() {
       <InitialTutorialModal
         isOpen={showInitialTutorial}
         onClose={() => setShowInitialTutorial(false)}
+        handleQuestionMarkClick={handleQuestionMarkClick}
       />
       <QuestionMarkInstructionsModal
         isOpen={showQuestionMarkInstructions}
