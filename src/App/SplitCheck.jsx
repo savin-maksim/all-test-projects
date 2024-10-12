@@ -539,7 +539,7 @@ function SplitCheck() {
   };
 
   return (
-    <div className='main-container'>
+    <main className='main-container'>
       <div className="title">
         <h1>Split Check</h1>
       </div>
@@ -651,7 +651,7 @@ function SplitCheck() {
       <ModalAddPerson show={isModalAddPerson} onClose={closeModalAddPerson} value={newPersonName} onClick={addPerson} onChange={(e) => setNewPersonName(e.target.value)} />
       <ModalManageGuests guests={people} onClose={() => setIsModalManageGuests(false)} onEdit={editGuest} onDelete={deleteGuest} show={isModalManageGuests} />
 
-    </div>
+    </main>
   );
 }
 
