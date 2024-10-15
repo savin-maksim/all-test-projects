@@ -1,0 +1,76 @@
+.input-history {
+  width: 100%;
+  height: 2rem;
+  border: none;
+  padding-right: 1rem;
+  text-align: end;
+  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.0);
+}
+
+.input-input {
+  width: 100%;
+  height: 3rem;
+  padding-right: 1rem;
+  text-align: end;
+  border-radius: var(--button-border-radius);
+  border: 1px solid slategray;
+  outline: none;
+}
+
+.input-input:focus {
+  border-color: var(--primary-color);
+}
+
+body .MuiSlider-root {
+  color: var(--secondary-color);
+}
+
+.history-section {
+  max-height: 80svh;
+  overflow-y: auto;
+}
+
+.history-section::-webkit-scrollbar {
+  display: none;
+}
+
+.history-section button {
+  padding: var(--secondary-gap);
+  text-transform: uppercase;
+  font-size: clamp(0.5rem, 0.3rem + 1vh, 1.2rem);
+}
+
+.history-section h1 {
+  padding-left: var(--primary-gap);
+}
+
+.history-section-top {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--primary-gap);
+  padding-bottom: calc(var(--primary-gap) * 1.5);
+  margin: var(--primary-gap);
+}
+
+.history-section-top :nth-child(1) {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.history-section-top :nth-child(2) {
+  grid-column: 4;
+}
+
+.history-section-cards {
+  border: 1px solid var(--primary-color);
+  border-radius: var(--primary-gap);
+  padding: var(--primary-gap);
+  margin-bottom: var(--primary-gap);
+}
+
+.history-section-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--primary-gap);
+}

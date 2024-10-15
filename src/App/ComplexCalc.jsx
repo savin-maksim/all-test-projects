@@ -352,13 +352,13 @@ function ComplexCalcV2() {
       {showHistory ? (
         <div className='history-section' ref={historyRef}>
           <div className='history-section-top'>
-            <button onClick={clearHistory}>
+            <button onClick={clearHistory} style={{ backgroundColor: 'var(--orange-color)', color: 'black'}}>
               Clear {historyType === 'calculations' ? 'History' : 'Variables'}
             </button>
             <button onClick={toggleHistoryType}>
               {historyType === 'calculations' ? 'Variables' : 'Calculations'}
             </button>
-            <button onClick={() => setShowHistory(false)}>✖</button>
+            <button style={{ backgroundColor: 'var(--red-color)'}} onClick={() => setShowHistory(false)}>✖</button>
           </div>
           <h2 style={{ textAlign: 'center' }}>
             {historyType === 'calculations' ? 'Calculations:' : 'Variables:'}
@@ -371,7 +371,7 @@ function ComplexCalcV2() {
                     <h1>
                       {expr} = {historyRes[history.length - index - 1]}
                     </h1>
-                    <button onClick={() => deleteHistoryItem(history.length - index - 1)} style={{ padding: '0.5rem', marginLeft: '1rem' }}>✖</button>
+                    <button onClick={() => deleteHistoryItem(history.length - index - 1)} style={{ padding: '0.5rem', marginLeft: '1rem', backgroundColor: 'var(--red-color)' }}>✖</button>
                   </div>
                   <div className='history-section-buttons'>
                     <button onClick={() => copyToClipboard(expr)}>Paste Input</button>

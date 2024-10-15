@@ -1,0 +1,74 @@
+.settings {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--primary-gap);
+  row-gap: var(--secondary-gap);
+  padding: calc(var(--primary-gap) * 2) 0;
+  width: 100%;
+}
+
+.settings>* {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.extra-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--primary-gap);
+  padding-bottom: var(--primary-gap);
+}
+
+.extra-buttons :nth-child(n) {
+  background-color: var(--secondary-color);
+}
+
+.extra-buttons-new-keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: var(--primary-gap);
+}
+
+.extra-buttons-new-keyboard :nth-child(1) {
+  grid-column: span 4;
+}
+
+.extra-buttons-new-keyboard :nth-child(-n+5) {
+  background-color: var(--secondary-color);
+}
+
+.extra-buttons-new-keyboard :nth-child(14) {
+  grid-column-start: 4;
+  grid-row: 5 / 7;
+  background-color: var(--secondary-color);
+}
+
+.extra-buttons-new-keyboard :nth-child(15) {
+  grid-column: span 3;
+}
+
+.extra-buttons-new-keyboard :nth-child(16) {
+  grid-column: span 3;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--primary-gap);
+}
+
+.keyboard :nth-child(4) {
+  grid-row: span 2;
+  background-color: var(--secondary-color);
+}
+
+.keyboard :nth-child(11) {
+  grid-row: span 2;
+  background-color: var(--secondary-color);
+}
+
+.keyboard :nth-child(12) {
+  grid-column: span 2;
+}

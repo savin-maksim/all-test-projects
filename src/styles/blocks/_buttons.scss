@@ -1,0 +1,110 @@
+button {
+  background: var(--primary-color);
+  border: none;
+  border-radius: var(--button-border-radius);
+  padding: clamp(0.5rem, 0.2rem + 1.5vh, 1.2rem) 0;
+  color: white;
+  transition: background-position 0.1s ease, transform 0.1s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.history-button {
+  width: 100%;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  border-radius: var(--button-border-radius);
+  background-color: var(--secondary-color);
+  color: white;
+  position: relative;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+  overflow: hidden;
+
+  span {
+    position: relative;
+    left: -0.5em;
+    transition: all 0.25s;
+  }
+
+  &::before,
+  &::after {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: var(--secondary-color);
+    transition: all 0.25s;
+    color: #fff;
+  }
+
+  &::before {
+    width: 25px;
+    content: '\f054';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "FontAwesome";
+    font-size: 10px;
+    font-weight: bold;
+    text-indent: 5px;
+    border-radius: 50% 0 0 50%;
+    z-index: 1;
+  }
+
+  &::after {
+    width: 100%;
+    transform: translate(100%, 0);
+    content: attr(data-hover);
+    display: flex;
+    align-items: center;
+    text-align: left;
+    text-indent: 8px;
+  }
+}
+
+@media (hover: hover) {
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 15px var(--primary-color);
+    cursor: pointer;
+  }
+
+  button:active {
+    transform: translateY(3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .history-button:hover {
+    &:hover {
+      border-color: var(--secondary-color);
+
+      span {
+        left: -100%;
+      }
+
+      &::before {
+        right: 20%;
+      }
+
+      &::after {
+        right: 20%;
+      }
+    }
+  }
+
+  .history-section button:hover {
+    transform: none;
+  }
+
+  .history-section button:active {
+    transform: translateY(3px);
+  }
+}
+
+@media (hover: none) {
+  button:active {
+    transform: translateY(3px);
+    box-shadow: 0px 6px 15px var(--primary-color);
+  }
+}
