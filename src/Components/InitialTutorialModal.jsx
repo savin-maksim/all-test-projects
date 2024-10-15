@@ -21,7 +21,7 @@ export const InitialTutorialModal = ({ isOpen, onClose, handleQuestionMarkClick 
     </p>
     <p>
       For future reference, you can access the instructions again by following these steps:
-      <p>Click on the buttons <button style={{ padding: '0.5rem 1rem', background: 'grey' }}>Functions</button> &rarr; <button style={{ padding: '0.5rem 3rem', background: 'gray' }}>?</button> </p>
+      <p>Click on the buttons: <br/><button style={{ padding: '0.5rem 1rem', background: 'grey' }}>Functions</button> &rarr; <button style={{ padding: '0.5rem 3rem', background: 'gray' }}>Instructions</button> </p>
     </p>
   </Modal>
 );

@@ -214,9 +214,9 @@ body .MuiSlider-root {
   align-items: center;
 }
 
-.settings :nth-child(3) {
+/* .settings :nth-child(3) {
   grid-column: span 2;
-}
+} */
 
 .extra-buttons {
   display: grid;
@@ -236,25 +236,25 @@ body .MuiSlider-root {
   gap: var(--primary-gap);
 }
 
-.extra-buttons-new-keyboard :nth-child(-n+2) {
-  grid-column: span 2;
+.extra-buttons-new-keyboard :nth-child(1) {
+  grid-column: span 4;
 }
 
-.extra-buttons-new-keyboard :nth-child(-n+6) {
+.extra-buttons-new-keyboard :nth-child(-n+5) {
   background-color: var(--secondary-color);
 }
 
-.extra-buttons-new-keyboard :nth-child(15) {
+.extra-buttons-new-keyboard :nth-child(14) {
   grid-column-start: 4;
   grid-row: 5 / 7;
   background-color: var(--secondary-color);
 }
 
-.extra-buttons-new-keyboard :nth-child(16) {
+.extra-buttons-new-keyboard :nth-child(15) {
   grid-column: span 3;
 }
 
-.extra-buttons-new-keyboard :nth-child(17) {
+.extra-buttons-new-keyboard :nth-child(16) {
   grid-column: span 3;
 }
 

@@ -328,7 +328,7 @@ function ComplexCalcV2() {
 
   const extraButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', '%', ' / ', ' * ', ' - '];
   const keyboard = ['7', '8', '9', ' + ', '4', '5', '6', '1', '2', '3', '=', '0', '.'];
-  const extraButtonsNewKeyboard = ['Variable', '?', '(', ')', 'AC', '<-', ' deg ', ' rad ', 'det', 'log', 'sin', 'cos', 'tan', 'pi', '=', ' rad to deg', ' deg to rad'];
+  const extraButtonsNewKeyboard = ['Instructions', '(', ')', 'AC', '<-', ' deg ', ' rad ', 'det', 'log', 'sin', 'cos', 'tan', 'pi', '=', ' rad to deg', ' deg to rad'];
 
   return (
     <main className='card'>
@@ -425,7 +425,7 @@ function ComplexCalcV2() {
             ) : (
               <button style={{ padding: '0.5rem' }} onClick={handleFunctionsClick}>Functions</button>
             )}
-
+            <button style={{ padding: '0.5rem' }} onClick={() => setShowVariableModal(true)}>Variable</button>
           </div>
           <div>
             {newKeyboard ? (
@@ -454,15 +454,13 @@ function ComplexCalcV2() {
                               ? () => addToInputNumber('sin(')
                               : val === 'tan'
                                 ? () => addToInputNumber('tan(')
-                                : val === 'Variable'
-                                  ? () => setShowVariableModal(true)
                                   : val === 'det'
                                     ? () => addToInputNumber('det([-1, 2; 3, 1])')
                                     : val === 'log'
                                       ? () => addToInputNumber('log(10000, 10)')
                                       : val === '='
                                         ? calculateResult
-                                        : val === '?'
+                                        : val === 'Instructions'
                                           ? handleQuestionMarkClick
                                           : () => addToInputNumber(val)}>
                       {val}
