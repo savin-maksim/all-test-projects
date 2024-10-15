@@ -149,7 +149,7 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
             <h3 style={{ textAlign: 'center' }}>Variables</h3>
             <p>
-               To create a variable, click the <button style={{ padding: '0.15rem 1rem' }}>Variables</button> button. A window will appear where you can <span>name your variable</span>. The current value in the input field will be assigned to this variable.
+               To create a variable, click the <button style={{ padding: '0.15rem 1rem' }}>Variables</button> button. A window will appear where you can <span>name your variable</span>. The <span>current value in the input field</span> will be assigned to this variable.
             </p>
             <p>
                You can <span>find all created variables</span> in the history section for later use. Access the history by clicking the <button style={{ padding: '0.15rem 1rem' }}>history</button> button, then select <button style={{ padding: '0.15rem 1rem' }}>Variables</button> to view your saved variables.
