@@ -13,7 +13,7 @@ export const InitialTutorialModal = ({ isOpen, onClose, handleQuestionMarkClick 
           handleQuestionMarkClick();
         }}
       >
-        ?
+        Instructions
       </button>
     </div>
     <p style={{ fontStyle: 'italic', fontSize: '0.9rem', color: 'orangered' }}>

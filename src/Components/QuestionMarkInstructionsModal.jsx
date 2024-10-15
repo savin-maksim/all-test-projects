@@ -106,14 +106,14 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
             <p style={{ marginTop: '1rem' }}>
                You can use these units in your calculations and conversions. For example:
             </p>
-            <ul style={{ listStyleType: 'none', padding: '0 1rem' }}>
+            <ol style={{ padding: '0 0 0 2rem', lineHeight: '3' }}>
                <li>2 inch to cm = 5.08 cm</li>
                <li>cos(45 deg) = 0.707</li>
                <li>90 km/h to m/s = 25 m/s</li>
                <li>100000 N / m^2 = 100 kPa</li>
                <li>9.81 m/s^2 * 100 kg * 40 m = 39.24 kJ</li>
                <li>460 V * 20 A * 30 days to kWh = 6624 kWh</li>
-            </ul>
+            </ol>
 
             <p style={{ marginTop: '1rem' }}>
                You can also use <span>variables</span> in your calculations. Here's an example of calculating energy consumption:
@@ -141,6 +141,9 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
             </p>
             <p>
                When you press the <button style={{ padding: '0.15rem 1rem' }}>To Polar</button> button, the complex value output will be in degrees, not radians.
+            </p>
+            <p>
+               <strong style={{ color: 'var(--primary-color)' }}>Note: This calculator can't handle physical units (like meters, seconds, etc.) when working with complex numbers.</strong>
             </p>
          </div>
          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
