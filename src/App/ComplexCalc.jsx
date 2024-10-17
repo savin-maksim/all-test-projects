@@ -352,13 +352,13 @@ function ComplexCalcV2() {
       {showHistory ? (
         <div className='history-section' ref={historyRef}>
           <div className='history-section-top'>
-            <button onClick={clearHistory} style={{ backgroundColor: 'var(--orange-color)', color: 'black'}}>
+            <button onClick={clearHistory} style={{ backgroundColor: 'var(--orange-color)', color: 'black' }}>
               Clear {historyType === 'calculations' ? 'History' : 'Variables'}
             </button>
             <button onClick={toggleHistoryType}>
               {historyType === 'calculations' ? 'Variables' : 'Calculations'}
             </button>
-            <button style={{ backgroundColor: 'var(--red-color)'}} onClick={() => setShowHistory(false)}>✖</button>
+            <button style={{ backgroundColor: 'var(--red-color)' }} onClick={() => setShowHistory(false)}>✖</button>
           </div>
           <h2 style={{ textAlign: 'center' }}>
             {historyType === 'calculations' ? 'Calculations:' : 'Variables:'}
@@ -454,15 +454,15 @@ function ComplexCalcV2() {
                               ? () => addToInputNumber('sin(')
                               : val === 'tan'
                                 ? () => addToInputNumber('tan(')
-                                  : val === 'det'
-                                    ? () => addToInputNumber('det([-1, 2; 3, 1])')
-                                    : val === 'log'
-                                      ? () => addToInputNumber('log(10000, 10)')
-                                      : val === '='
-                                        ? calculateResult
-                                        : val === 'Instructions'
-                                          ? handleQuestionMarkClick
-                                          : () => addToInputNumber(val)}>
+                                : val === 'det'
+                                  ? () => addToInputNumber('det([-1, 2; 3, 1])')
+                                  : val === 'log'
+                                    ? () => addToInputNumber('log(10000, 10)')
+                                    : val === '='
+                                      ? calculateResult
+                                      : val === 'Instructions'
+                                        ? handleQuestionMarkClick
+                                        : () => addToInputNumber(val)}>
                       {val}
                     </button>))}
                 </div>
