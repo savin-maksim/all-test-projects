@@ -346,7 +346,7 @@ function ComplexCalcV2() {
   const extraButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', '%', ' / ', ' * ', ' - '];
   const keyboard = ['7', '8', '9', ' + ', '4', '5', '6', '1', '2', '3', '=', '0', '.'];
   const extraButtonsNewKeyboard = [' rad to deg', ' deg to rad', ' deg ', ' rad ', 'det', 'e', 'sin', 'cos', 'tan', 'pi',];
-  const extraVarButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', ' / ', ' * ', ' - ', '+'];
+  const extraVarButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', ' / ', ' * ', ' - ', ' + '];
 
   const handleExtraVarButtonClick = (val) => {
     switch (val) {

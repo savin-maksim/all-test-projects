@@ -22,13 +22,5 @@ export const InitialTutorialModal = ({ isOpen, onClose, handleQuestionMarkClick 
         Note: Clicking this button will close this window and open the instructions.
       </p>
     </div>
-    <div>
-      <p>
-        For future reference, you can access the instructions again by following these steps:
-      </p>
-      <div style={{ display: 'flex', gap: '1rem'}}>Click on the buttons: <br />
-        <button style={{ display: 'flex', padding: '0.5rem 1rem', background: 'grey' }}><SquareFunction /></button> &rarr; <button style={{ display: 'flex', padding: '0.5rem 1rem', background: 'gray' }}><Info /></button>
-      </div>
-    </div>
   </Modal>
 );
