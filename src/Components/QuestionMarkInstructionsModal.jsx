@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '../Components/Modal';
+import { Box, Calculator, HardDriveDownload, Info, SquareFunction } from 'lucide-react';
 
 export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
    <Modal isOpen={isOpen} onClose={onClose}>
@@ -16,7 +17,7 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
             <h3 style={{ textAlign: 'center' }}>Advanced Usage</h3>
             <p>
-               Pressing the <button style={{ padding: '0.15rem 1rem' }}>Functions</button> button reveals an additional keyboard.
+               Pressing the <button style={{ padding: '0.15rem 1rem' }}><SquareFunction /></button> button reveals an additional keyboard.
             </p>
             <p>
                Trigonometric functions use <span>radians</span> by default in their calculations,
@@ -149,10 +150,10 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>
             <h3 style={{ textAlign: 'center' }}>Variables</h3>
             <p>
-               To create a variable, click the <button style={{ padding: '0.15rem 1rem' }}>Variables</button> button. A window will appear where you can <span>name your variable</span>. The <span>current value in the input field</span> will be assigned to this variable.
+               To create a variable, click the <button style={{ padding: '0.15rem 1rem' }}><HardDriveDownload /></button> button. A window will appear where you can <span>name your variable</span>. The <span>current value in the input field</span> will be assigned to this variable.
             </p>
             <p>
-               You can <span>find all created variables</span> in the history section for later use. Access the history by clicking the <button style={{ padding: '0.15rem 1rem' }}>history</button> button, then select <button style={{ padding: '0.15rem 1rem' }}>Variables</button> to view your saved variables.
+               You can <span>find all created variables</span> in the history section for later use. Access the history by clicking the <button style={{ padding: '0.15rem 1rem' }}>history</button> button, then select <button style={{ padding: '0.15rem 1rem' }}><HardDriveDownload /></button> to view your saved variables.
             </p>
             <p>
                Use variables in your calculations by simply typing their names in the input field.
@@ -173,7 +174,7 @@ export const QuestionMarkInstructionsModal = ({ isOpen, onClose }) => (
                Clicking any of these buttons will copy the selected information and automatically append it to the end of the main input field. This allows you to quickly use previous calculations or variables in new computations.
             </p>
             <p>
-               To access your history, click the <button style={{ padding: '0.15rem 1rem' }}>history</button> button. In the history window, you can switch between calculation history and saved variables using the <button style={{ padding: '0.15rem 1rem' }}>Variables/Calculations</button> toggle button.
+               To access your history, click the <button style={{ padding: '0.15rem 1rem' }}>history</button> button. In the history window, you can switch between calculation history and saved variables using the <button style={{ display: 'inline-flex', padding: '0.15rem 1rem' }}><HardDriveDownload /> / <Calculator /></button> toggle button.
             </p>
          </div>
          <div style={{ border: '1px solid var(--primary-color)', padding: '1rem', borderRadius: 'var(--button-border-radius)' }}>

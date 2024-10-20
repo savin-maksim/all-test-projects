@@ -4,6 +4,7 @@ import { create, all, evaluate } from 'mathjs';
 import { InitialTutorialModal } from '../Components/InitialTutorialModal';
 import { QuestionMarkInstructionsModal } from '../Components/QuestionMarkInstructionsModal';
 import { VariableModal } from '../Components/VariableModal';
+import { Box, Calculator, HardDriveDownload, Info, SquareFunction } from 'lucide-react';
 
 const initialConfig = {
   number: 'BigNumber',
@@ -23,6 +24,7 @@ function ComplexCalcV2() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [newKeyboard, setNewKeyboard] = useState(false);
+  const [showVariableKeyboard, setShowVariableKeyboard] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const inputRef = useRef(null);
 
@@ -52,6 +54,11 @@ function ComplexCalcV2() {
   const handleFunctionsClick = () => {
     setNewKeyboard(true);
     setHasClickedFunctions(true);
+  };
+
+  const handleVariableClick = (variableName) => {
+    setInput(prevInput => prevInput + variableName);
+    setTimeout(scrollInputToEnd, 0);
   };
 
   const handleQuestionMarkClick = () => {
@@ -154,6 +161,15 @@ function ComplexCalcV2() {
     }
     setTimeout(scrollInputToEnd, 0);
   };
+  const addToInputNewKeyboard = val => {
+    if (input === 'Error') {
+      setInput(val);
+    } else {
+      setInput(prevInput => prevInput + val);
+    }
+    setNewKeyboard(false);
+    setTimeout(scrollInputToEnd, 0);
+  };
   const addToInputExtra = val => {
     if (input === 'Error') {
       setInput(val);
@@ -190,13 +206,14 @@ function ComplexCalcV2() {
   // Math functions
   const convertToPolar = (input) => {
     try {
-      const result = input.replace(/\(?\s*(-?\d+(\.\d+)?)\s*([+\-])\s*(-?\d+(\.\d+)?)i\s*\)?/gi, (_, real, _1, sign, imaginary) => {
+      const result = input.replace(/\(?\s*(-?\d+(\.\d+)?)\s*([+\-])\s*(-?\d+(\.\d+)?)?i\s*\)?/gi, (_, real, _1, sign, imaginary) => {
         // Convert both parts to numbers
         const realNum = parseFloat(real);
-        const imaginaryNum = parseFloat(imaginary) * (sign === '-' ? -1 : 1);
+        const imaginaryNum = imaginary ? parseFloat(imaginary) : 1;
+        const finalImaginary = (sign === '-' ? -1 : 1) * imaginaryNum;
 
-        const absValue = Math.sqrt(realNum ** 2 + imaginaryNum ** 2);
-        const angleValue = Math.atan2(imaginaryNum, realNum) * 180 / Math.PI;
+        const absValue = Math.sqrt(realNum ** 2 + finalImaginary ** 2);
+        const angleValue = Math.atan2(finalImaginary, realNum) * 180 / Math.PI;
 
         return `(${math.round(absValue, precision)} ∠ ${math.round(angleValue, precision)})`;
       });
@@ -328,7 +345,32 @@ function ComplexCalcV2() {
 
   const extraButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', '%', ' / ', ' * ', ' - '];
   const keyboard = ['7', '8', '9', ' + ', '4', '5', '6', '1', '2', '3', '=', '0', '.'];
-  const extraButtonsNewKeyboard = ['Instructions', '(', ')', 'AC', '<-', ' deg ', ' rad ', 'det', 'log', 'sin', 'cos', 'tan', 'pi', '=', ' rad to deg', ' deg to rad'];
+  const extraButtonsNewKeyboard = [' rad to deg', ' deg to rad', ' deg ', ' rad ', 'det', 'e', 'sin', 'cos', 'tan', 'pi',];
+  const extraVarButtons = ['(', ')', 'AC', '<-', 'i', ' ∠ ', 'x^', '√', ' / ', ' * ', ' - ', '+'];
+
+  const handleExtraVarButtonClick = (val) => {
+    switch (val) {
+      case 'AC':
+        clearInput();
+        break;
+      case '<-':
+        handleBackspace();
+        break;
+      case 'x^':
+        addToInputExtra('^');
+        break;
+      case '√':
+        addToInputNumber('sqrt(');
+        break;
+      case 'i':
+        addToInputNumber('i');
+        break;
+      default:
+        addToInputExtra(val);
+    }
+  };
+
+
 
   return (
     <main className='card'>
@@ -380,11 +422,11 @@ function ComplexCalcV2() {
                 </div>
               ))
             ) : (
-              Object.entries(variables).map(([name, value], index) => (
+              Object.entries(variables).reverse().map(([name, value], index) => (
                 <div className='history-section-cards' key={index}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h1>{name} = {value}</h1>
-                    <button onClick={() => deleteVariableItem(name)} style={{ padding: '0.5rem', marginLeft: '1rem' }}>✖</button>
+                    <button onClick={() => deleteVariableItem(name)} style={{ padding: '0.5rem', marginLeft: '1rem', backgroundColor: 'var(--red-color)' }}>✖</button>
                   </div>
                   <div className='history-section-buttons'>
                     <button onClick={() => copyToClipboard(name)}>Paste Variable</button>
@@ -420,15 +462,52 @@ function ComplexCalcV2() {
           <div className="settings">
             <button style={{ padding: '0.5rem' }} onClick={() => convertToPolar(input)}>To Polar</button>
             <button style={{ padding: '0.5rem' }} onClick={() => convertToAlgebraic(input)}>To Algebraic</button>
-            {newKeyboard ? (
-              <button style={{ padding: '0.5rem' }} onClick={() => setNewKeyboard(!newKeyboard)}>Numbers</button>
-            ) : (
-              <button style={{ padding: '0.5rem' }} onClick={handleFunctionsClick}>Functions</button>
-            )}
-            <button style={{ padding: '0.5rem' }} onClick={() => setShowVariableModal(true)}>Variable</button>
+            <button style={{ padding: '0.5rem' }} onClick={handleQuestionMarkClick}><Info /></button>
+            <button style={{
+              padding: '0.5rem',
+              backgroundColor: newKeyboard ? 'var(--green-color)' : 'var(--primary-color)'
+            }} onClick={() => setNewKeyboard(!newKeyboard)}
+            >
+              {newKeyboard ? <Calculator /> : <SquareFunction />}
+            </button>
+            <button style={{ padding: '0.5rem' }} onClick={() => setShowVariableModal(true)}><HardDriveDownload /></button>
+            <button
+              style={{
+                padding: '0.5rem',
+                backgroundColor: showVariableKeyboard ? 'var(--green-color)' : 'var(--primary-color)',
+              }}
+              onClick={() => setShowVariableKeyboard(!showVariableKeyboard)}
+            >
+              {showVariableKeyboard ? <Calculator /> : <Box />}
+            </button>
           </div>
           <div>
-            {newKeyboard ? (
+            {showVariableKeyboard ? (
+              <div className='variable-keyboard-container'>
+                <div className='extra-var-buttons'>
+                  {extraVarButtons.map((val) => (
+                    <button
+                      key={val}
+                      onClick={() => handleExtraVarButtonClick(val)}
+                      className='extra-var-button'
+                    >
+                      {val}
+                    </button>
+                  ))}
+                </div>
+                <div className='variable-keyboard'>
+                  {Object.keys(variables).map((varName) => (
+                    <button
+                      key={varName}
+                      onClick={() => handleVariableClick(varName)}
+                      className='variable-button'
+                    >
+                      {varName}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : newKeyboard ? (
               <>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', justifyItems: 'center', alignItems: 'center', paddingBottom: 'calc(var(--primary-gap) * 2)' }}>
                   <div>Precision:{precision}</div>
@@ -449,20 +528,18 @@ function ComplexCalcV2() {
                         : val === '<-'
                           ? handleBackspace
                           : val === 'cos'
-                            ? () => addToInputNumber('cos(')
+                            ? () => addToInputNewKeyboard('cos(')
                             : val === 'sin'
-                              ? () => addToInputNumber('sin(')
+                              ? () => addToInputNewKeyboard('sin(')
                               : val === 'tan'
-                                ? () => addToInputNumber('tan(')
+                                ? () => addToInputNewKeyboard('tan(')
                                 : val === 'det'
-                                  ? () => addToInputNumber('det([-1, 2; 3, 1])')
+                                  ? () => addToInputNewKeyboard('det([-1, 2; 3, 1])')
                                   : val === 'log'
-                                    ? () => addToInputNumber('log(10000, 10)')
+                                    ? () => addToInputNewKeyboard('log(10000, 10)')
                                     : val === '='
                                       ? calculateResult
-                                      : val === 'Instructions'
-                                        ? handleQuestionMarkClick
-                                        : () => addToInputNumber(val)}>
+                                      : () => addToInputNewKeyboard(val)}>
                       {val}
                     </button>))}
                 </div>
@@ -479,8 +556,10 @@ function ComplexCalcV2() {
                           : val === 'x^'
                             ? () => addToInputExtra('^')
                             : val === '√'
-                              ? () => addToInputExtra('sqrt(')
-                              : () => addToInputExtra(val)}>
+                              ? () => addToInputNumber('sqrt(')
+                              : val === 'i'
+                                ? () => addToInputNumber('i')
+                                : () => addToInputExtra(val)}>
                       {val}
                     </button>))}
                 </div>
@@ -499,8 +578,9 @@ function ComplexCalcV2() {
               </>)}
           </div>
         </>
-      )}
-    </main>
+      )
+      }
+    </main >
   )
 }
 

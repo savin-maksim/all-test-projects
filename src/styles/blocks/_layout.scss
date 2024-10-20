@@ -1,16 +1,20 @@
 .settings {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   column-gap: var(--primary-gap);
   row-gap: var(--secondary-gap);
   padding: calc(var(--primary-gap) * 2) 0;
   width: 100%;
 }
 
-.settings>* {
+.settings > * {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.settings :nth-child(-n + 2) {
+  grid-column: span 2;
 }
 
 .extra-buttons {
@@ -27,30 +31,11 @@
 .extra-buttons-new-keyboard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(6, 1fr);
   gap: var(--primary-gap);
 }
 
-.extra-buttons-new-keyboard :nth-child(1) {
-  grid-column: span 4;
-}
-
-.extra-buttons-new-keyboard :nth-child(-n+5) {
-  background-color: var(--secondary-color);
-}
-
-.extra-buttons-new-keyboard :nth-child(14) {
-  grid-column-start: 4;
-  grid-row: 5 / 7;
-  background-color: var(--secondary-color);
-}
-
-.extra-buttons-new-keyboard :nth-child(15) {
-  grid-column: span 3;
-}
-
-.extra-buttons-new-keyboard :nth-child(16) {
-  grid-column: span 3;
+.extra-buttons-new-keyboard :nth-child(-n + 2) {
+  grid-column: span 2;
 }
 
 .keyboard {
@@ -71,4 +56,36 @@
 
 .keyboard :nth-child(12) {
   grid-column: span 2;
+}
+
+.variable-keyboard-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--primary-gap);
+}
+
+.extra-var-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--primary-gap);
+  border-radius: var(--primary-gap);
+}
+
+.extra-var-button {
+  background-color: var(--secondary-color);
+  border: none;
+}
+
+.variable-keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--primary-gap);
+  margin-top: var(--primary-gap);
+}
+
+.variable-button {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: var(--primary-gap);
+  transition: background-color 0.3s;
 }
