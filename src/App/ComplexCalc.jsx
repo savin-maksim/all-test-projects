@@ -260,6 +260,7 @@ function ComplexCalcV2() {
       setSnackbarMessage('Invalid variable name or value');
       setSnackbarOpen(true);
     }
+    setInput('');
   }, [variableName, input, setVariables, setVariableName, setShowVariableModal, setSnackbarMessage, setSnackbarOpen]);
 
   const resolveNestedVariables = (expr) => {
