@@ -1,3 +1,22 @@
+@mixin hover($color) {
+  background: var($color);
+
+  @media (hover: hover) {
+    &:hover {
+      box-shadow: 0px 6px 15px var(#{$color});
+    }
+    &:active {
+      box-shadow: 0px 6px 15px var(#{$color});
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      box-shadow: 0px 6px 15px var(#{$color});
+    }
+  }
+}
+
 button {
   background: var(--primary-color);
   border: none;
@@ -6,6 +25,19 @@ button {
   color: white;
   transition: background-position 0.1s ease, transform 0.1s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button-color-green {
+  @include hover(--green-color);
+}
+
+.button-color-red {
+  @include hover(--red-color);
+}
+
+.button-color-orange {
+  color: black;
+  @include hover(--orange-color);
 }
 
 .history-button {
@@ -40,7 +72,7 @@ button {
 
   &::before {
     width: 25px;
-    content: '\f054';
+    content: "\f054";
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +104,6 @@ button {
 
   button:active {
     transform: translateY(3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 
   .history-button:hover {

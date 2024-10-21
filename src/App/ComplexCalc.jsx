@@ -281,7 +281,7 @@ function ComplexCalcV2() {
     while (iterations < maxIterations) {
       const prevExpr = resolvedExpr;
       // Use lookbehind and lookahead to avoid matching parts of other variable names
-      resolvedExpr = resolvedExpr.replace(/(?<![a-zA-Z0-9_])([a-zA-Z_][a-zA-Z0-9_]*)(?![a-zA-Z0-9_])/g, resolveVariable);
+      resolvedExpr = resolvedExpr.replace(/(?<![a-zA-Zа-яА-Я0-9_])([a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_]*)(?![a-zA-Zа-яА-Я0-9_])/g, resolveVariable);
 
       if (prevExpr === resolvedExpr) {
         break; // Stop if no more replacements were made
@@ -291,7 +291,8 @@ function ComplexCalcV2() {
     }
 
     if (iterations === maxIterations) {
-      const unresolvedVariables = resolvedExpr.match(/\b[a-zA-Z_][a-zA-Z0-9_]*\b/g) || [];
+      const unresolvedVariables = resolvedExpr.match(/\b[a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_]*\b/g) || [];
+
       throw new Error(`Max iterations reached. Possible circular reference or undefined variables: ${unresolvedVariables.join(', ')}`);
     }
 
@@ -300,8 +301,6 @@ function ComplexCalcV2() {
   const calculateResult = () => {
     try {
       const { resolvedExpr, variablesUsed } = resolveNestedVariables(input);
-
-      console.log("Resolved expression:", resolvedExpr); // For debugging
 
       const result = math.evaluate(resolvedExpr);
       const evaluatedResult = math.round(result, precision);
@@ -395,13 +394,13 @@ function ComplexCalcV2() {
       {showHistory ? (
         <div className='history-section' ref={historyRef}>
           <div className='history-section-top'>
-            <button onClick={clearHistory} style={{ backgroundColor: 'var(--orange-color)', color: 'black' }}>
+            <button onClick={clearHistory} className='button-color-orange'>
               Clear {historyType === 'calculations' ? 'History' : 'Variables'}
             </button>
-            <button onClick={toggleHistoryType}>
-              {historyType === 'calculations' ? 'Variables' : 'Calculations'}
+            <button onClick={toggleHistoryType} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0 2rem'}}>
+              {historyType === 'calculations' ? <Box /> : <Calculator />}
             </button>
-            <button style={{ backgroundColor: 'var(--red-color)' }} onClick={() => setShowHistory(false)}>✖</button>
+            <button className='button-color-red' onClick={() => setShowHistory(false)}>✖</button>
           </div>
           <h2 style={{ textAlign: 'center' }}>
             {historyType === 'calculations' ? 'Calculations:' : 'Variables:'}
@@ -414,7 +413,7 @@ function ComplexCalcV2() {
                     <h1>
                       {expr} = {historyRes[history.length - index - 1]}
                     </h1>
-                    <button onClick={() => deleteHistoryItem(history.length - index - 1)} style={{ padding: '0.5rem', marginLeft: '1rem', backgroundColor: 'var(--red-color)' }}>✖</button>
+                    <button className='button-color-red' onClick={() => deleteHistoryItem(history.length - index - 1)} style={{ padding: '0.5rem', marginLeft: '1rem' }}>✖</button>
                   </div>
                   <div className='history-section-buttons'>
                     <button onClick={() => copyToClipboard(expr)}>Paste Input</button>
@@ -427,7 +426,7 @@ function ComplexCalcV2() {
                 <div className='history-section-cards' key={index}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h1>{name} = {value}</h1>
-                    <button onClick={() => deleteVariableItem(name)} style={{ padding: '0.5rem', marginLeft: '1rem', backgroundColor: 'var(--red-color)' }}>✖</button>
+                    <button className='button-color-red' onClick={() => deleteVariableItem(name)} style={{ padding: '0.5rem', marginLeft: '1rem' }}>✖</button>
                   </div>
                   <div className='history-section-buttons'>
                     <button onClick={() => copyToClipboard(name)}>Paste Variable</button>
@@ -464,19 +463,17 @@ function ComplexCalcV2() {
             <button style={{ padding: '0.5rem' }} onClick={() => convertToPolar(input)}>To Polar</button>
             <button style={{ padding: '0.5rem' }} onClick={() => convertToAlgebraic(input)}>To Algebraic</button>
             <button style={{ padding: '0.5rem' }} onClick={handleQuestionMarkClick}><Info /></button>
-            <button style={{
-              padding: '0.5rem',
-              backgroundColor: newKeyboard ? 'var(--green-color)' : 'var(--primary-color)'
-            }} onClick={() => setNewKeyboard(!newKeyboard)}
+            <button
+              className={`${newKeyboard ? 'button-color-green' : ''}`}
+              style={{ padding: '0.5rem' }}
+              onClick={() => setNewKeyboard(!newKeyboard)}
             >
               {newKeyboard ? <Calculator /> : <SquareFunction />}
             </button>
             <button style={{ padding: '0.5rem' }} onClick={() => setShowVariableModal(true)}><HardDriveDownload /></button>
             <button
-              style={{
-                padding: '0.5rem',
-                backgroundColor: showVariableKeyboard ? 'var(--green-color)' : 'var(--primary-color)',
-              }}
+              className={`${showVariableKeyboard ? 'button-color-green' : ''}`}
+              style={{ padding: '0.5rem' }}
               onClick={() => setShowVariableKeyboard(!showVariableKeyboard)}
             >
               {showVariableKeyboard ? <Calculator /> : <Box />}

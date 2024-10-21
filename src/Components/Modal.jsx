@@ -54,9 +54,9 @@ const Modal = ({ isOpen, onClose, children, showSaveButton, onSave }) => {
             {children}
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '2rem', marginTop: '1rem' }}>
                {showSaveButton && (
-                  <button onClick={onSave} style={{ padding: '0.5rem 1rem', backgroundColor: 'var(--green-color)' }}>Save Variable</button>
+                  <button onClick={onSave} className='button-color-green' style={{ padding: '0.5rem 1rem' }}>Save Variable</button>
                )}
-               <button onClick={onClose} style={{ padding: '0.5rem 1rem', backgroundColor: 'var(--red-color)' }}>Close</button>
+               <button onClick={onClose} className='button-color-red' style={{ padding: '0.5rem 1rem' }}>Close</button>
             </div>
          </div>
       </div>
